@@ -1,34 +1,250 @@
 /* Dark Mode Defaults (Tailwind "dark" class strategy) */
 
+/* CSS Variables for consistent theming */
+:root {
+    --dark-bg: #0F172A;
+    --dark-card: #1E293B;
+    --light-bg: #F8FAFC;
+    --light-card: #FFFFFF;
+}
+
 /* Force dark mode styles if 'dark' class is present on html/body */
 .dark body {
     background-color: var(--dark-bg);
-    color: #F1F5F9;
+    color: #F1F5F9 !important;
 }
 
-.dark .card {
+.dark .card,
+.dark .bg-dark-card {
     background-color: var(--dark-card);
     border-color: rgba(255, 255, 255, 0.1);
 }
 
-.dark .text-muted {
+.dark .text-muted,
+.dark .text-slate-400 {
     color: #94A3B8;
 }
 
-/* Light Mode Overrides */
-body:not(.dark) {
-    background-color: var(--light-bg);
-    color: #0F172A;
+/* Dark mode text fixes - ENSURE VISIBILITY */
+.dark .text-slate-900 {
+    color: #F1F5F9 !important;
 }
 
-body:not(.dark) .card {
-    background-color: var(--light-card);
-    border-color: #E2E8F0;
+.dark .text-slate-700 {
+    color: #E2E8F0 !important;
+}
+
+.dark .text-slate-600 {
+    color: #CBD5E1 !important;
+}
+
+.dark .text-slate-500 {
+    color: #94A3B8 !important;
+}
+
+.dark .text-white {
+    color: #FFFFFF !important;
+}
+
+.dark .text-primary {
+    color: #8B5CF6 !important;
+}
+
+.dark .text-secondary {
+    color: #06B6D4 !important;
+}
+
+.dark .text-accent {
+    color: #EC4899 !important;
+}
+
+/* Dark mode specific fixes */
+.dark .bg-dark-card {
+    background-color: #1E293B !important;
+}
+
+.dark .bg-slate-900\/30 {
+    background-color: rgba(15, 23, 42, 0.3) !important;
+}
+
+.dark .bg-slate-900\/50 {
+    background-color: rgba(15, 23, 42, 0.5) !important;
+}
+
+.dark .bg-slate-900\/90 {
+    background-color: rgba(15, 23, 42, 0.9) !important;
+}
+
+.dark .bg-\[0B1120\] {
+    background-color: #0B1120 !important;
+}
+
+/* Light Mode Overrides - CRITICAL FIX */
+body:not(.dark) {
+    background-color: var(--light-bg);
+    color: #1E293B !important;
+}
+
+body:not(.dark) .card,
+body:not(.dark) .bg-dark-card {
+    background-color: var(--light-card) !important;
+    border-color: #E2E8F0 !important;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-body:not(.dark) .text-muted {
-    color: #64748B;
+body:not(.dark) .text-muted,
+body:not(.dark) .text-slate-400 {
+    color: #64748B !important;
+}
+
+/* Light mode text color fixes */
+body:not(.dark) .text-slate-900 {
+    color: #1E293B !important;
+}
+
+body:not(.dark) .text-slate-700 {
+    color: #334155 !important;
+}
+
+body:not(.dark) .text-slate-600 {
+    color: #475569 !important;
+}
+
+body:not(.dark) .text-slate-500 {
+    color: #64748B !important;
+}
+
+body:not(.dark) .text-white {
+    color: #1E293B !important;
+}
+
+body:not(.dark) .text-primary {
+    color: #8B5CF6 !important;
+}
+
+body:not(.dark) .text-secondary {
+    color: #06B6D4 !important;
+}
+
+body:not(.dark) .text-accent {
+    color: #EC4899 !important;
+}
+
+/* Light mode border fixes */
+body:not(.dark) .border-white\/10 {
+    border-color: #E2E8F0 !important;
+}
+
+body:not(.dark) .border-white\/5 {
+    border-color: #F1F5F9 !important;
+}
+
+/* Light mode background fixes */
+body:not(.dark) .bg-white\/5 {
+    background-color: #F8FAFC !important;
+}
+
+body:not(.dark) .bg-white\/10 {
+    background-color: #F1F5F9 !important;
+}
+
+body:not(.dark) .bg-dark-card {
+    background-color: #FFFFFF !important;
+}
+
+/* Light mode specific fixes for common elements */
+body:not(.dark) .bg-slate-900\/30 {
+    background-color: #F8FAFC !important;
+}
+
+body:not(.dark) .bg-slate-900\/50 {
+    background-color: #F1F5F9 !important;
+}
+
+body:not(.dark) .bg-slate-900\/90 {
+    background-color: #E2E8F0 !important;
+}
+
+body:not(.dark) .bg-\[0B1120\] {
+    background-color: #F8FAFC !important;
+}
+
+/* Light mode text fixes for specific elements */
+body:not(.dark) .text-slate-300 {
+    color: #64748B !important;
+}
+
+body:not(.dark) .text-slate-200 {
+    color: #94A3B8 !important;
+}
+
+body:not(.dark) .text-slate-100 {
+    color: #CBD5E1 !important;
+}
+
+/* Light mode hover states */
+body:not(.dark) .hover\:text-primary:hover {
+    color: #7C3AED !important;
+}
+
+body:not(.dark) .hover\:text-secondary:hover {
+    color: #0891B2 !important;
+}
+
+body:not(.dark) .hover\:text-accent:hover {
+    color: #DB2777 !important;
+}
+
+body:not(.dark) .hover\:bg-white\/5:hover {
+    background-color: #F1F5F9 !important;
+}
+
+body:not(.dark) .hover\:bg-white\/10:hover {
+    background-color: #E2E8F0 !important;
+}
+
+/* Light mode input fixes */
+body:not(.dark) input::placeholder {
+    color: #94A3B8 !important;
+}
+
+body:not(.dark) textarea::placeholder {
+    color: #94A3B8 !important;
+}
+
+/* Light mode footer fixes */
+body:not(.dark) footer {
+    background-color: #F8FAFC !important;
+}
+
+/* Login/Register card spacing fixes */
+.login-register-card {
+    padding: 1.5rem !important;
+}
+
+.login-register-card .text-center.mb-8 {
+    margin-bottom: 1.5rem !important;
+}
+
+.login-register-card .space-y-4 > * + * {
+    margin-top: 1rem !important;
+}
+
+.login-register-card .space-y-6 > * + * {
+    margin-top: 1.5rem !important;
+}
+
+/* Logo clickable styles */
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
 }
 
 /* Toggle Switch Styles */

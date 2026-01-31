@@ -16,21 +16,47 @@ const App = {
         const themeToggleBtns = document.querySelectorAll('.theme-toggle');
 
         // Check local storage or system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
         }
 
         themeToggleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
                 document.documentElement.classList.toggle('dark');
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.theme = 'dark';
-                } else {
-                    localStorage.theme = 'light';
-                }
+                
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                
+                // Update toggle button icons
+                this.updateThemeToggleIcons(isDark);
             });
+        });
+
+        // Initialize icons based on current theme
+        this.updateThemeToggleIcons(document.documentElement.classList.contains('dark'));
+    },
+
+    updateThemeToggleIcons: function (isDark) {
+        const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+        themeToggleBtns.forEach(btn => {
+            const moonIcon = btn.querySelector('.fa-moon');
+            const sunIcon = btn.querySelector('.fa-sun');
+            
+            if (moonIcon && sunIcon) {
+                if (isDark) {
+                    moonIcon.classList.remove('hidden');
+                    sunIcon.classList.add('hidden');
+                } else {
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                }
+            }
         });
     },
 
@@ -69,10 +95,18 @@ const App = {
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                header.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'border-b', 'border-white/10');
-                header.classList.remove('bg-transparent');
+                // Add dark background for both light and dark modes when scrolling
+                if (document.documentElement.classList.contains('dark')) {
+                    header.classList.add('bg-slate-900/90', 'backdrop-blur-md', 'border-b', 'border-white/10');
+                    header.classList.remove('bg-transparent');
+                } else {
+                    header.classList.add('bg-white/95', 'backdrop-blur-md', 'border-b', 'border-slate-200');
+                    header.classList.remove('bg-transparent');
+                }
             } else {
+                // Transparent background at top
                 header.classList.remove('bg-slate-900/90', 'backdrop-blur-md', 'border-b', 'border-white/10');
+                header.classList.remove('bg-white/95', 'backdrop-blur-md', 'border-b', 'border-slate-200');
                 header.classList.add('bg-transparent');
             }
         });
