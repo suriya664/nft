@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create NFT | NFTNexus</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5CF6',
+                        secondary: '#06B6D4',
+                        accent: '#EC4899',
+                        dark: { bg: '#0F172A', card: '#1E293B', sidebar: '#0B1120' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css">
+    <link rel="stylesheet" href="assets/css/web3.css">
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-[#0F172A] dark:text-slate-100 min-h-screen">
+  <!-- Navbar -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent" id="navbar">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer"
+                    onclick="window.location.href='index.html'">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl font-bold animate-pulse-glow">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <span class="font-display text-2xl font-bold tracking-tight">NFT<span
+                            class="text-primary">Nexus</span></span>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-sm font-medium hover:text-primary transition-colors">Home</a>
+                    <a href="index-v2.html" class="text-sm font-medium hover:text-primary transition-colors">Home v2</a>
+                    <a href="marketplace.html"
+                        class="text-sm font-medium hover:text-primary transition-colors">Explore</a>
+                    <a href="collections.html"
+                        class="text-sm font-medium hover:text-primary transition-colors">Collections</a>
+                    <a href="create-nft.html"
+                        class="text-sm font-medium hover:text-primary transition-colors">Create</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary transition-colors">About</a>
+                    <a href="login.html" class="text-sm font-medium hover:text-primary transition-colors">Login</a>
+                    <a href="register.html"
+                        class="text-sm font-medium hover:text-primary transition-colors">Register</a>
+                </nav>
+
+                <!-- Right Actions -->
+                <div class="hidden md:flex items-center gap-4">
+
+                    <!-- Connect Wallet Btn -->
+                    <button
+                        class="btn-connect-wallet bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-primary/25">
+                        Connect Wallet
+                    </button>
+
+                    <!-- User Menu (Hidden by default) -->
+                    <div class="user-wallet-menu hidden relative group">
+                        <div class="flex items-center gap-2 cursor-pointer">
+                            <div class="w-9 h-9 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 p-[2px]">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"
+                                    class="w-full h-full rounded-full bg-slate-900 object-cover">
+                            </div>
+                        </div>
+                        <!-- Dropdown -->
+                        <div
+                            class="absolute right-0 top-full mt-2 w-48 bg-[#1E293B] border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right z-50">
+                            <div class="p-3 border-b border-white/10">
+                                <p class="text-xs text-secondary font-mono wallet-address">0x...</p>
+                            </div>
+                            <a href="dashboard-collector.html"
+                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">Dashboard</a>
+                            <a href="profile.html"
+                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">My Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary"
+                                id="btn-disconnect">Disconnect</a>
+                        </div>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button
+                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/5">
+                        <i class="fa-solid fa-moon dark:hidden text-slate-700"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
+                    </button>
+
+                    <!-- Language -->
+                    <div class="text-sm font-medium cursor-pointer hover:text-primary">EN</div>
+                </div>
+
+                <!-- Mobile Menu Details -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button
+                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center">
+                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-[#0F172A] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-white/10">
+            <span class="font-display text-xl font-bold">Menu</span>
+            <button id="close-mobile-menu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="flex-1 flex flex-col p-6 space-y-6 overflow-y-auto">
+            <a href="index.html" class="text-lg font-medium">Home</a>
+            <a href="index-v2.html" class="text-lg font-medium">Home v2</a>
+            <a href="marketplace.html" class="text-lg font-medium">Explore</a>
+            <a href="collections.html" class="text-lg font-medium">Collections</a>
+            <a href="create-nft.html" class="text-lg font-medium">Create</a>
+            <a href="about.html" class="text-lg font-medium">About</a>
+            <a href="contact.html" class="text-lg font-medium">Contact</a>
+            <a href="blog.html" class="text-lg font-medium">Blog</a>
+            <a href="login.html" class="text-lg font-medium">Login</a>
+            <a href="register.html" class="text-lg font-medium">Register</a>
+            <div class="h-px bg-white/10 my-2"></div>
+            <button class="btn-connect-wallet w-full bg-primary py-3 rounded-lg font-bold">Connect Wallet</button>
+        </div>
+    </div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-[#0F172A] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-white/10">
+            <span class="font-display text-xl font-bold">Menu</span>
+            <button id="close-mobile-menu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="flex-1 flex flex-col p-6 space-y-6 overflow-y-auto">
+            <a href="index.html" class="text-lg font-medium">Home</a>
+            <a href="index-v2.html" class="text-lg font-medium">Home v2</a>
+            <a href="marketplace.html" class="text-lg font-medium">Explore</a>
+            <a href="collections.html" class="text-lg font-medium">Collections</a>
+            <a href="create-nft.html" class="text-lg font-medium">Create</a>
+            <a href="about.html" class="text-lg font-medium">About</a>
+            <a href="contact.html" class="text-lg font-medium">Contact</a>
+            <a href="blog.html" class="text-lg font-medium">Blog</a>
+            <a href="login.html" class="text-lg font-medium">Login</a>
+            <a href="register.html" class="text-lg font-medium">Register</a>
+            <div class="h-px bg-white/10 my-2"></div>
+            <button class="btn-connect-wallet w-full bg-primary py-3 rounded-lg font-bold">Connect Wallet</button>
+        </div>
+    </div>
+
+    <div class="pt-28 pb-20 container mx-auto px-4 max-w-4xl">
+
+        <div class="mb-10">
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Create New Item</h1>
+            <p class="text-slate-400">Mint your digital art as an NFT on the blockchain.</p>
+        </div>
+
+        <form class="space-y-8">
+
+            <!-- File Upload -->
+            <div>
+                <label class="block text-sm font-bold mb-3">Upload File</label>
+                <div
+                    class="border-2 border-dashed border-white/20 rounded-2xl p-10 text-center hover:bg-white/5 transition-colors cursor-pointer group relative overflow-hidden">
+                    <input type="file" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10">
+                    <div class="relative z-0">
+                        <div
+                            class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform text-2xl text-slate-400 group-hover:text-white">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <p class="font-bold text-lg mb-1">PNG, JPG, GIF, WEBP or MP4</p>
+                        <p class="text-sm text-slate-500">Max size: 100MB</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <label class="block text-sm font-bold mb-3">Name</label>
+                    <input type="text" placeholder="Item Name e.g. 'Cyber Punk'"
+                        class="w-full bg-dark-card border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-3">External Link (Optional)</label>
+                    <input type="text" placeholder="https://yoursite.com/item/123"
+                        class="w-full bg-dark-card border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-3">Description</label>
+                <textarea rows="4" placeholder="Provide a detailed description of your item."
+                    class="w-full bg-dark-card border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"></textarea>
+                <p class="text-xs text-slate-500 mt-2">The description will be included on the item's detail page
+                    underneath its image.</p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-3">Collection</label>
+                <div class="flex gap-4 overflow-x-auto pb-2">
+                    <div
+                        class="flex-shrink-0 w-36 h-36 bg-dark-card border border-white/10 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-2"><i
+                                class="fa-solid fa-plus"></i></div>
+                        <span class="text-xs font-bold">New Collection</span>
+                    </div>
+                    <!-- Existing -->
+                    <div
+                        class="flex-shrink-0 w-36 h-36 bg-dark-card border border-primary rounded-xl overflow-hidden relative cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1620332313337-58711451a54c?q=80&w=200&fit=crop"
+                            class="w-full h-full object-cover opacity-50">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xs font-bold">Cyber Punks</span>
+                        </div>
+                        <div
+                            class="absolute top-2 right-2 w-4 h-4 bg-primary rounded-full flex items-center justify-center text-[8px]">
+                            <i class="fa-solid fa-check"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Properties -->
+            <div class="bg-dark-card border border-white/10 rounded-xl p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-list text-xl text-primary"></i>
+                        <div>
+                            <h3 class="font-bold">Properties</h3>
+                            <p class="text-xs text-slate-400">Textual traits that show up as rectangles</p>
+                        </div>
+                    </div>
+                    <button type="button"
+                        class="w-8 h-8 rounded-lg border border-white/20 flex items-center justify-center hover:bg-white/10"><i
+                            class="fa-solid fa-plus"></i></button>
+                </div>
+                <!-- Example Rows -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs uppercase text-slate-500 font-bold">Type</label>
+                        <input type="text" value="Character"
+                            class="bg-dark-bg border border-white/10 rounded px-3 py-2 text-sm">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs uppercase text-slate-500 font-bold">Name</label>
+                        <input type="text" value="Male"
+                            class="bg-dark-bg border border-white/10 rounded px-3 py-2 text-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blockchain -->
+            <div>
+                <label class="block text-sm font-bold mb-3">Blockchain</label>
+                <div class="relative">
+                    <select
+                        class="appearance-none w-full bg-dark-card border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors cursor-pointer">
+                        <option>Ethereum</option>
+                        <option>Polygon</option>
+                        <option>Solana</option>
+                    </select>
+                    <i
+                        class="fa-solid fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-500"></i>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-white/10">
+                <button type="button"
+                    class="w-full py-4 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 text-white rounded-xl font-bold text-lg shadow-lg shadow-primary/25 transition-all transform hover:-translate-y-1">
+                    Create Item
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- Minting Guide Section -->
+    <section class="py-24 bg-slate-900/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">How to Create NFTs</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Follow our step-by-step guide to mint your first NFT</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xl font-bold">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Upload Your Art</h3>
+                    <p class="text-slate-400">Upload your digital file - image, video, audio, or 3D model. Supported formats include JPG, PNG, GIF, MP4, MP3, and GLB.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center text-white text-xl font-bold">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Add Details</h3>
+                    <p class="text-slate-400">Fill in your NFT details including name, description, properties, and select or create a collection.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mint & List</h3>
+                    <p class="text-slate-400">Choose your blockchain, set pricing, and mint your NFT. List it for sale or keep it in your collection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creator Tools Section -->
+    <section class="py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Creator Tools</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Advanced tools and features for NFT creators</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Tool 1 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-all">
+                    <div class="text-3xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold mb-3">Batch Minting</h3>
+                    <p class="text-slate-400 mb-4">Create multiple NFTs at once with our batch minting feature. Save time and gas fees.</p>
+                    <button class="text-primary hover:underline text-sm">Learn More →</button>
+                </div>
+
+                <!-- Tool 2 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-secondary/50 transition-all">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-3">Lazy Minting</h3>
+                    <p class="text-slate-400 mb-4">Mint NFTs only when they're sold. No upfront gas fees required for creators.</p>
+                    <button class="text-secondary hover:underline text-sm">Learn More →</button>
+                </div>
+
+                <!-- Tool 3 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-accent/50 transition-all">
+                    <div class="text-3xl mb-4">🔒</div>
+                    <h3 class="text-xl font-bold mb-3">Smart Contracts</h3>
+                    <p class="text-slate-400 mb-4">Deploy your own ERC-721 or ERC-1155 contracts with our easy-to-use tools.</p>
+                    <button class="text-accent hover:underline text-sm">Learn More →</button>
+                </div>
+
+                <!-- Tool 4 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-all">
+                    <div class="text-3xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold mb-3">Analytics</h3>
+                    <p class="text-slate-400 mb-4">Track your sales, views, and collector engagement with detailed analytics.</p>
+                    <button class="text-primary hover:underline text-sm">Learn More →</button>
+                </div>
+
+                <!-- Tool 5 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-secondary/50 transition-all">
+                    <div class="text-3xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-3">Royalty Manager</h3>
+                    <p class="text-slate-400 mb-4">Set and manage royalties on secondary sales for ongoing revenue.</p>
+                    <button class="text-secondary hover:underline text-sm">Learn More →</button>
+                </div>
+
+                <!-- Tool 6 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-accent/50 transition-all">
+                    <div class="text-3xl mb-4">🌐</div>
+                    <h3 class="text-xl font-bold mb-3">Multi-Chain</h3>
+                    <p class="text-slate-400 mb-4">Mint on Ethereum, Polygon, and other supported blockchains with ease.</p>
+                    <button class="text-accent hover:underline text-sm">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creator Success Stories Section -->
+    <section class="py-24 bg-slate-900/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Creator Success Stories</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">See how artists are thriving on NFTNexus</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Story 1 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Creator1" 
+                             class="w-12 h-12 rounded-full">
+                        <div>
+                            <h3 class="font-bold">DigitalArtist</h3>
+                            <p class="text-sm text-slate-400">2.5K Followers</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 mb-4">"NFTNexus helped me reach a global audience. I've sold over 500 pieces and built a sustainable career as a digital artist."</p>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-primary font-bold">523 NFTs Sold</span>
+                        <span class="text-secondary">1,250 ETH Volume</span>
+                    </div>
+                </div>
+
+                <!-- Story 2 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Creator2" 
+                             class="w-12 h-12 rounded-full">
+                        <div>
+                            <h3 class="font-bold">PixelCreator</h3>
+                            <p class="text-sm text-slate-400">1.8K Followers</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 mb-4">"The lazy minting feature saved me thousands in gas fees. I can now focus on creating art instead of worrying about costs."</p>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-primary font-bold">342 NFTs Sold</span>
+                        <span class="text-secondary">856 ETH Volume</span>
+                    </div>
+                </div>
+
+                <!-- Story 3 -->
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Creator3" 
+                             class="w-12 h-12 rounded-full">
+                        <div>
+                            <h3 class="font-bold">AbstractMind</h3>
+                            <p class="text-sm text-slate-400">3.2K Followers</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 mb-4">"The analytics tools help me understand what collectors want. My sales increased by 300% after using the insights."</p>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-primary font-bold">189 NFTs Sold</span>
+                        <span class="text-secondary">445 ETH Volume</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Everything you need to know about creating NFTs</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold text-lg">What file formats are supported?</h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                    </div>
+                    <p class="text-slate-400 mt-4">We support JPG, PNG, GIF, SVG for images; MP4, MOV for videos; MP3, WAV for audio; and GLB, GLTF for 3D models.</p>
+                </div>
+
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold text-lg">How much does it cost to mint an NFT?</h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                    </div>
+                    <p class="text-slate-400 mt-4">Gas fees vary by blockchain. With lazy minting, you pay zero upfront costs. Fees are only deducted when your NFT sells.</p>
+                </div>
+
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold text-lg">Can I sell my NFT on other marketplaces?</h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                    </div>
+                    <p class="text-slate-400 mt-4">Yes! Your NFTs are stored on the blockchain and can be traded on any compatible marketplace.</p>
+                </div>
+
+                <div class="bg-dark-card border border-white/10 rounded-2xl p-6">
+                    <div class="flex justify-between items-center cursor-pointer">
+                        <h3 class="font-bold text-lg">How do royalties work?</h3>
+                        <i class="fa-solid fa-chevron-down text-slate-400"></i>
+                    </div>
+                    <p class="text-slate-400 mt-4">Set a percentage (typically 5-10%) that you'll earn on all future sales of your NFT. Automatically paid to your wallet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/wallet.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

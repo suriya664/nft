@@ -1,0 +1,49 @@
+/* Dark Mode Defaults (Tailwind "dark" class strategy) */
+
+/* Force dark mode styles if 'dark' class is present on html/body */
+.dark body {
+    background-color: var(--dark-bg);
+    color: #F1F5F9;
+}
+
+.dark .card {
+    background-color: var(--dark-card);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .text-muted {
+    color: #94A3B8;
+}
+
+/* Light Mode Overrides */
+body:not(.dark) {
+    background-color: var(--light-bg);
+    color: #0F172A;
+}
+
+body:not(.dark) .card {
+    background-color: var(--light-card);
+    border-color: #E2E8F0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark) .text-muted {
+    color: #64748B;
+}
+
+/* Toggle Switch Styles */
+.theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.theme-toggle-icon {
+    font-size: 1.25rem;
+    color: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle-icon:hover {
+    transform: rotate(15deg);
+}
