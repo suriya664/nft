@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collector Dashboard | Digital Art NFT Platform</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/nolan/64/nft.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#8B5CF6', cyan: '#06B6D4', pink: '#EC4899', dark: '#0B0E14' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/theme.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-dark text-white font-['Inter']">
+
+    <!-- DASHBOARD NAVIGATION (Guideline 30: Logout included) -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10 px-6 lg:px-12 flex items-center justify-between h-[80px]">
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div
+                class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i data-lucide="zap" class="text-white w-6 h-6"></i>
+            </div>
+            <span
+                class="text-2xl font-['Outfit'] font-extrabold tracking-tight group-hover:text-cyan transition-colors">ART<span
+                    class="text-primary">NFT</span></span>
+        </a>
+
+        <a href="dashboard.html" class="text-cyan font-bold border-b-2 border-cyan pb-1 transition-all">Overview</a>
+        <a href="explore.html" class="text-white/70 hover:text-white transition-all">Marketplace</a>
+        <a href="#" class="text-white/70 hover:text-white transition-all">My Bids</a>
+        <a href="collections.html" class="text-white/70 hover:text-white transition-all">Collections</a>
+        <a href="about.html" class="text-white/70 hover:text-white transition-all">About</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <button
+                class="theme-toggle w-10 h-10 rounded-xl glass flex items-center justify-center text-white/70 hover:text-white transition-all transform hover:rotate-12">
+                <i data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+            <div class="hidden md:flex items-center gap-3 glass px-4 py-2 rounded-2xl border border-white/10">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="text-xs font-mono font-bold text-white/60">0x84...2e4d</span>
+            </div>
+            <div class="relative group cursor-pointer">
+                <img src="https://i.pravatar.cc/100?u=user" class="w-10 h-10 rounded-full border-2 border-primary"
+                    alt="U">
+                <div
+                    class="absolute top-[120%] right-0 w-48 glass-card border border-white/10 rounded-2xl p-4 hidden group-hover:block z-50">
+                    <a href="#" class="flex items-center gap-3 p-2 hover:bg-white/5 rounded-xl transition-all"><i
+                            data-lucide="user" class="w-4 h-4"></i> Profile</a>
+                    <a href="#" class="flex items-center gap-3 p-2 hover:bg-white/5 rounded-xl transition-all"><i
+                            data-lucide="settings" class="w-4 h-4"></i> Settings</a>
+                    <hr class="border-white/5 my-2">
+                    <a href="login.html"
+                        class="flex items-center gap-3 p-2 hover:bg-red-500/10 text-red-400 rounded-xl transition-all font-bold"><i
+                            data-lucide="log-out" class="w-4 h-4"></i> Logout</a>
+                </div>
+            </div>
+            <button id="menu-toggle" class="lg:hidden text-white p-2">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="mt-[80px] p-6 lg:p-12 max-w-[1600px] mx-auto">
+
+        <!-- 1. HERO STATS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div
+                class="glass-card p-6 rounded-[32px] bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
+                <p class="text-[10px] text-white/40 uppercase font-black tracking-widest mb-4">Total Portfolio Value</p>
+                <h2 class="text-4xl font-black mb-6">124.8 <span class="text-primary">ETH</span></h2>
+                <div class="flex items-center gap-2 text-green-400 font-bold text-sm">
+                    <i data-lucide="trending-up" class="w-4 h-4"></i> +12.5% this month
+                </div>
+            </div>
+            <div
+                class="glass-card p-6 rounded-[32px] bg-gradient-to-br from-cyan/10 to-transparent border border-cyan/20">
+                <p class="text-[10px] text-white/40 uppercase font-black tracking-widest mb-4">Items Owned</p>
+                <h2 class="text-4xl font-black mb-6 text-cyan">84</h2>
+                <div class="flex items-center gap-2 text-white/40 font-bold text-sm">
+                    <i data-lucide="layers" class="w-4 h-4"></i> across 12 collections
+                </div>
+            </div>
+            <div class="glass-card p-6 rounded-[32px]">
+                <p class="text-[10px] text-white/40 uppercase font-black tracking-widest mb-4">Active Bids</p>
+                <h2 class="text-4xl font-black mb-6 text-pink">12</h2>
+                <div class="flex items-center gap-2 text-pink/60 font-bold text-sm">
+                    <i data-lucide="zap" class="w-4 h-4"></i> 3 ends within 2 hours
+                </div>
+            </div>
+            <div class="glass-card p-10 rounded-[48px]">
+                <p class="text-[10px] text-white/40 uppercase font-black tracking-widest mb-4">Collector Score</p>
+                <h2 class="text-4xl font-black mb-6">9,420</h2>
+                <div class="flex items-center gap-2 text-cyan font-bold text-sm">
+                    <i data-lucide="award" class="w-4 h-4"></i> Diamond Tier Level
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. DATA VISUALIZATION (Guideline 47: Reduced size bar graphs) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Growth Chart (Bar Graph) -->
+            <div class="lg:col-span-2 glass-card p-10 rounded-[48px]">
+                <div class="flex justify-between items-center mb-12">
+                    <h3 class="text-2xl font-bold">Value Growth</h3>
+                    <select class="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none">
+                        <option class="bg-dark">Last 7 Days</option>
+                        <option class="bg-dark">Last 30 Days</option>
+                    </select>
+                </div>
+                <!-- Reduced size bar graph component -->
+                <div class="h-48 flex items-end gap-3 lg:gap-6 justify-between px-4">
+                    <div class="group relative flex-1 flex flex-col justify-end">
+                        <div
+                            class="bg-primary/20 h-[30%] rounded-t-lg group-hover:bg-primary transition-all cursor-pointer">
+                        </div>
+                        <p class="mt-4 text-[10px] font-bold text-white/20 text-center uppercase">Mon</p>
+                    </div>
+                    <div class="group relative flex-1 flex flex-col justify-end">
+                        <div
+                            class="bg-primary/20 h-[45%] rounded-t-lg group-hover:bg-primary transition-all cursor-pointer">
+                        </div>
+                        <p class="mt-4 text-[10px] font-bold text-white/20 text-center uppercase">Tue</p>
+                    </div>
+                    <div class="group relative flex-1 flex flex-col justify-end">
+                        <div
+                            class="bg-primary/20 h-[40%] rounded-t-lg group-hover:bg-primary transition-all cursor-pointer">
+                        </div>
+                        <p class="mt-4 text-[10px] font-bold text-white/20 text-center uppercase">Wed</p>
+                    </div>
+                    <div
+                        class="group relative flex-1 flex flex-col justify-end outline outline-1 outline-primary/40 rounded-t-lg">
+                        <div class="bg-primary h-[85%] rounded-t-lg shadow-[0_0_20px_rgba(139,92,246,0.5)]"></div>
+                        <p class="mt-4 text-[10px] font-bold text-primary text-center uppercase">Thu</p>
+                    </div>
+                    <div class="group relative flex-1 flex flex-col justify-end">
+                        <div
+                            class="bg-primary/20 h-[60%] rounded-t-lg group-hover:bg-primary transition-all cursor-pointer">
+                        </div>
+                        <p class="mt-4 text-[10px] font-bold text-white/20 text-center uppercase">Fri</p>
+                    </div>
+                    <div class="group relative flex-1 flex flex-col justify-end">
+                        <div
+                            class="bg-primary/20 h-[50%] rounded-t-lg group-hover:bg-primary transition-all cursor-pointer">
+                        </div>
+                        <p class="mt-4 text-[10px] font-bold text-white/20 text-center uppercase">Sat</p>
+                    </div>
+                    <div class="group relative flex-1 flex flex-col justify-end">
+                        <div
+                            class="bg-primary/20 h-[70%] rounded-t-lg group-hover:bg-primary transition-all cursor-pointer">
+                        </div>
+                        <p class="mt-4 text-[10px] font-bold text-white/20 text-center uppercase">Sun</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bid activity -->
+            <div class="glass-card p-10 rounded-[48px]">
+                <h3 class="text-2xl font-bold mb-8">Recent Bids</h3>
+                <div class="space-y-6">
+                    <div
+                        class="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-white/5 hover:border-white/10 transition-all cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=100"
+                            class="w-12 h-12 rounded-xl object-cover" alt="X">
+                        <div class="flex-1">
+                            <p class="text-sm font-bold">Aether Soul #08</p>
+                            <p class="text-[10px] text-white/40">Highest: 4.2 ETH</p>
+                        </div>
+                        <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-1 rounded font-bold">Win</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-white/5 hover:border-white/10 transition-all cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1643101808620-e4b85590987c?q=80&w=100"
+                            class="w-12 h-12 rounded-xl object-cover" alt="X">
+                        <div class="flex-1">
+                            <p class="text-sm font-bold">Cyber Glitch</p>
+                            <p class="text-[10px] text-white/40">Highest: 1.5 ETH</p>
+                        </div>
+                        <span class="text-[10px] bg-red-400/20 text-red-400 px-2 py-1 rounded font-bold">Out</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-4 bg-white/5 p-4 rounded-3xl border border-white/5 hover:border-white/10 transition-all cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1614850715649-1d0106293bd1?q=80&w=100"
+                            class="w-12 h-12 rounded-xl object-cover" alt="X">
+                        <div class="flex-1">
+                            <p class="text-sm font-bold">Zenith Shard</p>
+                            <p class="text-[10px] text-white/40">Highest: 0.8 ETH</p>
+                        </div>
+                        <span class="text-[10px] bg-cyan/20 text-cyan px-2 py-1 rounded font-bold">Act</span>
+                    </div>
+                </div>
+                <button
+                    class="w-full mt-8 py-3 text-white/40 hover:text-white transition-all text-xs font-bold uppercase tracking-widest">View
+                    All Activity</button>
+            </div>
+        </div>
+
+        <!-- 3. OWNED NFTS GALLERY (Filter icon for mobile - Guideline 19) -->
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-['Outfit'] font-extrabold px-2">Owned <span
+                        class="text-gradient">Collection</span></h2>
+                <div class="flex items-center gap-4">
+                    <!-- Mobile filter icon -->
+                    <button
+                        class="lg:hidden glass w-12 h-12 rounded-xl flex items-center justify-center border border-white/10">
+                        <i data-lucide="filter" class="w-5 h-5"></i>
+                    </button>
+                    <!-- Desktop filters -->
+                    <div class="hidden lg:flex items-center gap-3">
+                        <button class="px-6 py-2 bg-primary rounded-xl text-sm font-bold">Recent</button>
+                        <button
+                            class="px-6 py-2 glass rounded-xl text-sm font-bold opacity-40 hover:opacity-100">Price</button>
+                        <button
+                            class="px-6 py-2 glass rounded-xl text-sm font-bold opacity-40 hover:opacity-100">Favorites</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                <!-- Owned Item 1 -->
+                <div
+                    class="glass card-compact group cursor-pointer border border-white/5 hover:border-cyan/40 transition-all rounded-[32px] overflow-hidden p-3 bg-white/5">
+                    <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=400"
+                        class="w-full aspect-square object-cover rounded-[24px] mb-4 group-hover:scale-105 transition-all"
+                        alt="N">
+                    <div class="px-2 pb-2">
+                        <h5 class="font-bold text-sm mb-1 truncate">Spectrum #42</h5>
+                        <p class="text-[10px] text-white/40">Acquired for 0.45 ETH</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div
+                    class="glass card-compact group cursor-pointer border border-white/5 hover:border-cyan/40 transition-all rounded-[32px] overflow-hidden p-3 bg-white/5">
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=400"
+                        class="w-full aspect-square object-cover rounded-[24px] mb-4 group-hover:scale-105 transition-all"
+                        alt="N">
+                    <div class="px-2 pb-2">
+                        <h5 class="font-bold text-sm mb-1 truncate">Void Shifter</h5>
+                        <p class="text-[10px] text-white/40">Acquired for 2.1 ETH</p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div
+                    class="glass card-compact group cursor-pointer border border-white/5 hover:border-cyan/40 transition-all rounded-[32px] overflow-hidden p-3 bg-white/5">
+                    <img src="https://images.unsplash.com/photo-1547891269-0512a14596d3?q=80&w=400"
+                        class="w-full aspect-square object-cover rounded-[24px] mb-4 group-hover:scale-105 transition-all"
+                        alt="N">
+                    <div class="px-2 pb-2">
+                        <h5 class="font-bold text-sm mb-1 truncate">Classic Cyber</h5>
+                        <p class="text-[10px] text-white/40">Acquired for 0.12 ETH</p>
+                    </div>
+                </div>
+                <!-- Add more items for visual density -->
+                <div
+                    class="glass card-compact group cursor-pointer border border-white/5 hover:border-cyan/40 transition-all rounded-[32px] overflow-hidden p-3 bg-white/5">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400"
+                        class="w-full aspect-square object-cover rounded-[24px] mb-4 group-hover:scale-105 transition-all"
+                        alt="N">
+                    <div class="px-2 pb-2">
+                        <h5 class="font-bold text-sm mb-1 truncate">Deep Abstract</h5>
+                        <p class="text-[10px] text-white/40">Acquired for 1.8 ETH</p>
+                    </div>
+                </div>
+                <div
+                    class="glass card-compact group cursor-pointer border border-white/5 hover:border-cyan/40 transition-all rounded-[32px] overflow-hidden p-3 bg-white/5">
+                    <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=400"
+                        class="w-full aspect-square object-cover rounded-[24px] mb-4 group-hover:scale-105 transition-all"
+                        alt="N">
+                    <div class="px-2 pb-2">
+                        <h5 class="font-bold text-sm mb-1 truncate">Hyper Wave</h5>
+                        <p class="text-[10px] text-white/40">Acquired for 3.0 ETH</p>
+                    </div>
+                </div>
+                <div
+                    class="glass card-compact group cursor-pointer border border-white/5 hover:border-cyan/40 transition-all rounded-[32px] overflow-hidden p-3 bg-white/5">
+                    <img src="https://images.unsplash.com/photo-1634976779374-1e0723cc580d?q=80&w=400"
+                        class="w-full aspect-square object-cover rounded-[24px] mb-4 group-hover:scale-105 transition-all"
+                        alt="N">
+                    <div class="px-2 pb-2">
+                        <h5 class="font-bold text-sm mb-1 truncate">Genesis Core</h5>
+                        <p class="text-[10px] text-white/40">Acquired for 8.5 ETH</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. TRANSACTION HISTORY -->
+        <div class="glass-card rounded-[48px] overflow-hidden mb-12 border border-white/10">
+            <div class="p-8 lg:px-12 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <h3 class="text-2xl font-bold">Transaction History</h3>
+                <button
+                    class="text-xs font-bold text-primary uppercase tracking-widest hover:text-white transition-all">Export
+                    CSV</button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-white/5 border-b border-white/5">
+                        <tr class="text-[10px] text-white/20 uppercase tracking-[0.2em] font-black">
+                            <th class="p-10">Event</th>
+                            <th class="p-10">Item</th>
+                            <th class="p-10">Price</th>
+                            <th class="p-10">From</th>
+                            <th class="p-10">To</th>
+                            <th class="p-10">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-body">
+                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                            <td class="p-10 flex items-center gap-3">
+                                <i data-lucide="shopping-cart" class="text-cyan w-4 h-4"></i>
+                                <span class="font-bold">Sale</span>
+                            </td>
+                            <td class="p-10 font-bold">#42nd Street</td>
+                            <td class="p-10 font-mono text-cyan">4.50 ETH</td>
+                            <td class="p-10 text-white/40 text-xs">0x42...88a1</td>
+                            <td class="p-10 text-white/40 text-xs text-primary">You</td>
+                            <td class="p-10 text-white/40 text-xs">2 hours ago</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                            <td class="p-10 flex items-center gap-3">
+                                <i data-lucide="arrow-up-right" class="text-primary w-4 h-4"></i>
+                                <span class="font-bold">Bid</span>
+                            </td>
+                            <td class="p-10 font-bold">Nexus Core</td>
+                            <td class="p-10 font-mono text-primary">1.25 ETH</td>
+                            <td class="p-10 text-white/40 text-xs text-primary">You</td>
+                            <td class="p-10 text-white/40 text-xs">0xe4...112c</td>
+                            <td class="p-10 text-white/40 text-xs">1 day ago</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition-colors">
+                            <td class="p-10 flex items-center gap-3">
+                                <i data-lucide="zap" class="text-pink w-4 h-4"></i>
+                                <span class="font-bold">Mint</span>
+                            </td>
+                            <td class="p-10 font-bold">Genesis #01</td>
+                            <td class="p-10 font-mono text-pink">0.05 ETH</td>
+                            <td class="p-10 text-white/40 text-xs">Null Address</td>
+                            <td class="p-10 text-white/40 text-xs text-primary">You</td>
+                            <td class="p-10 text-white/40 text-xs">5 days ago</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Empty State (Hidden if data exists) -->
+                <div id="no-transactions" class="hidden p-20 text-center">
+                    <div class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="activity" class="w-10 h-10 text-white/20"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">No Transactions Found</h4>
+                    <p class="text-white/40 max-w-sm mx-auto">Once you start buying, selling, or bidding on NFTs, your
+                        activity will appear here.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark/80 pt-24 pb-12 px-6 lg:px-24 border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            <!-- Brand Info -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                <a href="index.html" class="flex items-center gap-2 mb-8 group">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-['Outfit'] font-extrabold tracking-tight">ART<span
+                            class="text-primary">NFT</span></span>
+                </a>
+                <p class="text-white/50 leading-relaxed mb-10 text-lg">
+                    The world's most innovative NFT marketplace for professional digital artists and high-tier
+                    collectors. Experience Web3 art like never before.
+                </p>
+                <!-- Socials -->
+                <div class="flex gap-5">
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-cyan hover:border-cyan hover:-translate-y-2 transition-all"><i
+                            data-lucide="twitter"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-primary hover:border-primary hover:-translate-y-2 transition-all"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-pink hover:border-pink hover:-translate-y-2 transition-all"><i
+                            data-lucide="github"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-white hover:border-white hover:-translate-y-2 transition-all"><i
+                            data-lucide="discord"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Marketplace</h4>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">All NFTs</a>
+                <a href="collections.html" class="text-white/50 hover:text-cyan transition-all w-fit">Collections</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Photography</a>
+                <a href="auctions.html" class="text-white/50 hover:text-cyan transition-all w-fit">Live Auctions</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Virtual Reality</a>
+            </div>
+
+            <!-- Platform Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Platform</h4>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">About Us</a>
+                <a href="blog.html" class="text-white/50 hover:text-primary transition-all w-fit">Latest News</a>
+                <a href="contact.html" class="text-white/50 hover:text-primary transition-all w-fit">Support Center</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Platform Story</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Roadmap</a>
+            </div>
+
+            <!-- More Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Community</h4>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Artists Hub</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Partner Programs</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Affiliates</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Developer API</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Careers</a>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div
+            class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 text-white/30 font-medium">
+            <p>© 2026 Digital Art NFT Platform. All rights reserved.</p>
+            <div class="flex gap-10 mt-6 md:mt-0">
+                <a href="#" class="hover:text-white transition-all">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-all">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-all">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

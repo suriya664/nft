@@ -1,691 +1,873 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFTNexus | Collect, Create & Trade Extraordinary Digital Art</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <title>Digital Art NFT Platform | Premier Web3 Marketplace</title>
+    <!-- SEO -->
+    <meta name="description"
+        content="Discover, collect, and sell extraordinary NFTs on the world's most futuristic digital art marketplace.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/nolan/64/nft.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         primary: '#8B5CF6',
-                        secondary: '#06B6D4',
-                        accent: '#EC4899',
-                        dark: {
-                            bg: '#0F172A',
-                            card: '#1E293B'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        cyan: '#06B6D4',
+                        pink: '#EC4899',
+                        dark: '#0B0E14',
                     }
                 }
             }
         }
     </script>
 
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/dark-mode.css">
-    <link rel="stylesheet" href="assets/css/web3.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Theme Script (Prevents Flickering) -->
+    <script src="assets/js/theme.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-slate-50 text-slate-900 dark:bg-[#0F172A] dark:text-slate-100 overflow-x-hidden">
+<body class="bg-dark text-white font-['Inter']">
 
-    <!-- Navbar -->
-    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent" id="navbar">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer"
-                    onclick="window.location.href='index.html'">
-                    <div
-                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl font-bold animate-pulse-glow">
-                        <i class="fa-solid fa-cube"></i>
-                    </div>
-                    <span class="font-display text-2xl font-bold tracking-tight">NFT<span
-                            class="text-primary">Nexus</span></span>
-                </div>
-
-                <!-- Desktop Nav -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-sm font-medium hover:text-primary transition-colors">Home</a>
-                    <a href="index-v2.html" class="text-sm font-medium hover:text-primary transition-colors">Home v2</a>
-                    <a href="marketplace.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Explore</a>
-                    <a href="collections.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Collections</a>
-                    <a href="create-nft.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Create</a>
-                    <a href="about.html" class="text-sm font-medium hover:text-primary transition-colors">About</a>
-                    <a href="login.html" class="text-sm font-medium hover:text-primary transition-colors">Login</a>
-                    <a href="register.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Register</a>
-                </nav>
-
-                <!-- Right Actions -->
-                <div class="hidden md:flex items-center gap-4">
-
-                    <!-- Connect Wallet Btn -->
-                    <button
-                        class="btn-connect-wallet bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-primary/25">
-                        Connect Wallet
-                    </button>
-
-                    <!-- User Menu (Hidden by default) -->
-                    <div class="user-wallet-menu hidden relative group">
-                        <div class="flex items-center gap-2 cursor-pointer">
-                            <div class="w-9 h-9 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 p-[2px]">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"
-                                    class="w-full h-full rounded-full bg-slate-900 object-cover">
-                            </div>
-                        </div>
-                        <!-- Dropdown -->
-                        <div
-                            class="absolute right-0 top-full mt-2 w-48 bg-[#1E293B] border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right z-50">
-                            <div class="p-3 border-b border-white/10">
-                                <p class="text-xs text-secondary font-mono wallet-address">0x...</p>
-                            </div>
-                            <a href="dashboard-collector.html"
-                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">Dashboard</a>
-                            <a href="profile.html"
-                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">My Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary"
-                                id="btn-disconnect">Disconnect</a>
-                        </div>
-                    </div>
-
-                    <!-- Theme Toggle -->
-                    <button
-                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/5">
-                        <i class="fa-solid fa-moon dark:hidden text-slate-700"></i>
-                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
-                    </button>
-
-                    <!-- Language -->
-                    <div class="text-sm font-medium cursor-pointer hover:text-primary">EN</div>
-                </div>
-
-                <!-- Mobile Menu Details -->
-                <div class="md:hidden flex items-center gap-4">
-                    <button
-                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center">
-                        <i class="fa-solid fa-moon dark:hidden text-slate-700"></i>
-                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="text-2xl">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
+    <!-- NAVIGATION -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10 px-6 lg:px-12 flex items-center justify-between">
+        <!-- Logo (Guideline 16) -->
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div
+                class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i data-lucide="zap" class="text-white w-6 h-6"></i>
             </div>
-        </div>
-    </header>
+            <span
+                class="text-2xl font-['Outfit'] font-extrabold tracking-tight group-hover:text-cyan transition-colors">ART<span
+                    class="text-primary">NFT</span></span>
+        </a>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu"
-        class="fixed inset-0 z-[60] bg-[#0F172A] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
-        <div class="p-6 flex justify-between items-center border-b border-white/10">
-            <span class="font-display text-xl font-bold">Menu</span>
-            <button id="close-mobile-menu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        <!-- Desktop Links (Guideline 29 - 1px spacing) -->
+        <div class="hidden lg:flex items-center gap-8 ml-8">
+            <a href="index.html" class="text-cyan font-semibold border-b-2 border-cyan pb-1 transition-all">Home</a>
+            <a href="explore.html" class="text-white/70 hover:text-white transition-all">Explore</a>
+            <a href="artists.html" class="text-white/70 hover:text-white transition-all">Artists</a>
+            <a href="collections.html" class="text-white/70 hover:text-white transition-all">Collections</a>
+            <a href="auctions.html" class="text-white/70 hover:text-white transition-all">Drops</a>
+            <a href="about.html" class="text-white/70 hover:text-white transition-all">About</a>
         </div>
-        <div class="flex-1 flex flex-col p-6 space-y-6 overflow-y-auto">
-            <a href="index.html" class="text-lg font-medium">Home</a>
-            <a href="index-v2.html" class="text-lg font-medium">Home v2</a>
-            <a href="marketplace.html" class="text-lg font-medium">Explore</a>
-            <a href="collections.html" class="text-lg font-medium">Collections</a>
-            <a href="create-nft.html" class="text-lg font-medium">Create</a>
-            <a href="about.html" class="text-lg font-medium">About</a>
-            <a href="contact.html" class="text-lg font-medium">Contact</a>
-            <a href="blog.html" class="text-lg font-medium">Blog</a>
-            <a href="login.html" class="text-lg font-medium">Login</a>
-            <a href="register.html" class="text-lg font-medium">Register</a>
-            <div class="h-px bg-white/10 my-2"></div>
-            <button class="btn-connect-wallet w-full bg-primary py-3 rounded-lg font-bold">Connect Wallet</button>
+
+        <div class="hidden lg:flex items-center gap-6">
+            <button
+                class="theme-toggle w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-all transform hover:rotate-12">
+                <i data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+            <a href="login.html" class="text-white font-medium hover:text-primary transition-colors">Login</a>
+            <a href="dashboard.html" class="btn-premium btn-primary text-sm">Connect Wallet</a>
+        </div>
+
+        <!-- Hamburger (Guideline 14) -->
+        <button id="menu-toggle" class="lg:hidden text-white p-2">
+            <i data-lucide="menu" class="w-8 h-8"></i>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU (Left Slide) -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-dark/95 backdrop-blur-xl lg:hidden flex flex-col p-8 w-[80%] max-w-[320px] h-screen border-r border-white/10">
+        <div class="flex items-center justify-between mb-12">
+            <span class="text-2xl font-['Outfit'] font-bold">ART<span class="text-primary">NFT</span></span>
+            <button id="menu-close" class="text-white"><i data-lucide="x" class="w-8 h-8"></i></button>
+        </div>
+        <div class="flex flex-col gap-6 text-xl">
+            <a href="index.html" class="text-cyan font-bold">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="artists.html">Artists</a>
+            <a href="collections.html">Collections</a>
+            <a href="auctions.html">Drops</a>
+            <hr class="border-white/10 my-4">
+            <a href="login.html" class="btn-premium btn-outline text-lg">Login</a>
+            <a href="dashboard.html" class="btn-premium btn-primary text-lg">Connect Wallet</a>
         </div>
     </div>
 
+    <!-- MAIN CONTENT -->
+    <main class="mt-[80px]">
 
+        <!-- 1. HERO SECTION (Wow Factor) -->
+        <section class="relative min-h-[80vh] flex items-center justify-start overflow-hidden px-6 lg:px-24">
+            <!-- Background Visuals -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2000&auto=format&fit=crop"
+                    class="w-full h-full object-cover opacity-30 mix-blend-overlay" alt="Hero BG">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent"></div>
+            </div>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <!-- Particles Background -->
-        <div id="particles-js" class="absolute inset-0 pointer-events-none opacity-40"></div>
-
-        <!-- Gradient Blobs -->
-        <div
-            class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2">
-        </div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col items-center text-center max-w-4xl mx-auto animate-on-scroll">
-                <span
-                    class="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6 uppercase tracking-wider backdrop-blur-sm">
-                    🚀 The Next Gen NFT Marketplace
-                </span>
-                <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight mb-8">
-                    Create, Collect & Sell <br>
-                    <span class="gradient-text-primary">Extraordinary NFTs</span>
+            <div class="relative z-10 max-w-4xl">
+                <div class="flex items-center gap-3 mb-6 animate-pulse">
+                    <span
+                        class="px-4 py-1.5 rounded-full bg-primary/20 border border-primary text-primary text-sm font-bold uppercase tracking-widest">Web3
+                        Evolution</span>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-['Outfit'] font-extrabold leading-[1.1] mb-8">
+                    Discover & Collect <br>
+                    <span class="text-gradient">Rare Digital Art</span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl leading-relaxed">
-                    The premier marketplace for digital artists and collectors. Buy, sell, and discover exclusive
-                    digital items with
-                    <span class="text-white font-medium">zero gas fees</span> on supported collections.
+                <p class="text-xl text-white/60 mb-10 max-w-2xl leading-relaxed">
+                    Join the premier NFT marketplace where artists and collectors converge to define the future of
+                    digital ownership. High-fidelity art, instant minting, and global reach.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <a href="marketplace.html"
-                        class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all transform hover:-translate-y-1">
-                        Explore NFTs
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="explore.html" class="btn-premium btn-primary text-lg px-12 group">
+                        Explore Gallery
+                        <i data-lucide="arrow-right"
+                            class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <a href="create-nft.html"
-                        class="px-8 py-4 bg-transparent border border-white/20 text-white rounded-full font-bold text-lg hover:bg-white/5 hover:border-white/40 transition-all transform hover:-translate-y-1 backdrop-blur-sm">
-                        Create Your Own
+                    <a href="dashboard.html" class="btn-premium btn-outline text-lg px-12">
+                        Mint Yours
                     </a>
                 </div>
 
-                <!-- Stats Ticker -->
-                <div class="mt-16 flex flex-wrap justify-center gap-8 md:gap-16 border-t border-white/5 pt-8 w-full">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold font-display text-white mb-1">250K+</div>
-                        <div class="text-sm text-secondary uppercase tracking-wide">NFTs Minted</div>
+                <!-- Stats Row -->
+                <div class="mt-20 flex gap-12 border-t border-white/10 pt-10">
+                    <div>
+                        <span class="block text-4xl font-extrabold text-cyan">42k+</span>
+                        <span class="text-white/40 uppercase text-xs tracking-widest font-bold">Total Artwork</span>
                     </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold font-display text-white mb-1">50K+</div>
-                        <div class="text-sm text-secondary uppercase tracking-wide">Artists</div>
+                    <div>
+                        <span class="block text-4xl font-extrabold text-primary">15k+</span>
+                        <span class="text-white/40 uppercase text-xs tracking-widest font-bold">Top Artists</span>
                     </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold font-display text-white mb-1">$120M</div>
-                        <div class="text-sm text-secondary uppercase tracking-wide">Volume</div>
+                    <div>
+                        <span class="block text-4xl font-extrabold text-pink">8k+</span>
+                        <span class="text-white/40 uppercase text-xs tracking-widest font-bold">Daily Trades</span>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Floating Cards Background Animation (CSS handled) -->
-        <div class="absolute top-1/2 left-10 hidden xl:block animate-float" style="animation-delay: 0s;">
-            <div class="w-64 bg-dark-card border border-white/10 rounded-2xl p-3 shadow-2xl glass transform -rotate-12">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWVPcmSWn7Ygep9CL-aIGx2B_xDZW9KjfHyA&s"
-                    class="w-full h-64 object-cover rounded-xl mb-3">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-sm">Cyber Punk #2077</span>
-                    <span class="text-primary text-xs font-mono">2.5 ETH</span>
-                </div>
-            </div>
-        </div>
-        <div class="absolute top-1/3 right-10 hidden xl:block animate-float" style="animation-delay: 3s;">
-            <div class="w-64 bg-dark-card border border-white/10 rounded-2xl p-3 shadow-2xl glass transform rotate-12">
-                <img src="https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?q=80&w=600&auto=format&fit=crop"
-                    class="w-full h-64 object-cover rounded-xl mb-3">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-sm">Ape Arts #44</span>
-                    <span class="text-secondary text-xs font-mono">1.8 ETH</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trending Section -->
-    <section class="py-24 relative bg-slate-900/50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-end mb-12 animate-on-scroll">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-2">Wait! Trending Drops 🔥</h2>
-                    <p class="text-slate-400">The most sought-after NFTs in the marketplace right now.</p>
-                </div>
-                <div class="flex gap-2">
-                    <button
-                        class="w-10 h-10 rounded-full border border-white/10 hover:bg-white/5 flex items-center justify-center"><i
-                            class="fa-solid fa-arrow-left"></i></button>
-                    <button
-                        class="w-10 h-10 rounded-full border border-white/10 hover:bg-white/5 flex items-center justify-center"><i
-                            class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-on-scroll">
-                <!-- NFT Card 1 -->
+            <!-- Floating Art Card -->
+            <div class="hidden xl:block absolute right-24 top-1/2 -translate-y-1/2 w-[400px] animate-float">
                 <div
-                    class="group bg-dark-card border border-white/10 rounded-2xl overflow-hidden hover-glow transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div
-                            class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/10">
-                            <i class="fa-solid fa-clock text-accent mr-1"></i> 08h 22m 10s
+                    class="glass-card p-4 rounded-[32px] overflow-hidden translate-x-10 -rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop"
+                        class="w-full h-[450px] object-cover rounded-[24px]" alt="Hero NFT">
+                    <div class="mt-6 flex justify-between items-end">
+                        <div>
+                            <p class="text-white/40 text-sm mb-1 uppercase tracking-tighter">Current Bid</p>
+                            <h3 class="text-2xl font-bold">12.45 ETH</h3>
+                            <p class="text-cyan font-bold mt-2">Space Glitch #82</p>
                         </div>
-                        <button
-                            class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
+                        <div class="bg-white/10 p-4 rounded-2xl flex flex-col items-center">
+                            <span class="text-xs text-white/40 mb-1">Ends in</span>
+                            <span class="text-lg font-bold">04:12:49</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TRENDING NFTS (Carousel Style) -->
+        <section class="py-24 px-6 lg:px-12 bg-dark/50">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 px-4">
+                <div>
+                    <h2 class="text-5xl font-['Outfit'] font-bold mb-4">Trending <span class="text-cyan">Now</span></h2>
+                    <p class="text-white/50 text-xl">The most sought-after artworks this week.</p>
+                </div>
+                <a href="explore.html"
+                    class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all pb-2 border-b border-primary/20">
+                    View Marketplace <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+                <!-- NFT Card 1 -->
+                <div class="glass-card p-4 rounded-[24px]">
+                    <div class="relative rounded-[16px] overflow-hidden mb-6 h-[280px]">
+                        <img src="https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover" alt="NFT 1">
                         <div
-                            class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex justify-center">
-                            <button
-                                class="w-full py-2 bg-white text-black font-bold rounded-full hover:bg-gray-200">Place
+                            class="absolute top-4 right-4 bg-dark/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/10">
+                            04d 12h</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold mb-1">Cyber Samurai #01</h3>
+                                <p class="text-white/40 text-sm">by @CyberDojo</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-white/40 block">Price</span>
+                                <span class="text-primary font-bold">4.20 ETH</span>
+                            </div>
+                        </div>
+                        <div class="cta-container">
+                            <button class="w-full btn-premium btn-outline text-sm hover:btn-primary">Place a
                                 Bid</button>
                         </div>
                     </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-bold text-lg truncate">Abstract Minds #04</h3>
-                                <p class="text-sm text-slate-400 flex items-center gap-1">by <span
-                                        class="text-primary">ArtWorks</span> <i
-                                        class="fa-solid fa-circle-check text-secondary text-xs"></i></p>
-                            </div>
-                        </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-card p-4 rounded-[24px]">
+                    <div class="relative rounded-[16px] overflow-hidden mb-6 h-[280px]">
+                        <img src="https://images.fineartamerica.com/images-medium-large-5/dream-escape-2-modern-liquid-art-serg-wiaderny.jpg"
+                            class="w-full h-full object-cover" alt="NFT 2">
                         <div
-                            class="flex justify-between items-center mt-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
+                            class="absolute top-4 right-4 bg-dark/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/10">
+                            02d 08h</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="flex justify-between items-start mb-4">
                             <div>
-                                <p class="text-xs text-slate-400">Current Bid</p>
-                                <div class="eth-price">
-                                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="w-3.5 h-3.5"
-                                        alt="ETH">
-                                    <span>2.55 ETH</span>
-                                </div>
+                                <h3 class="text-xl font-bold mb-1">Abstract Dream #22</h3>
+                                <p class="text-white/40 text-sm">by @LiquidArt</p>
                             </div>
                             <div class="text-right">
-                                <p class="text-xs text-slate-400">USD Value</p>
-                                <p class="text-sm font-mono text-slate-300">$4,228</p>
+                                <span class="text-xs text-white/40 block">Price</span>
+                                <span class="text-primary font-bold">1.85 ETH</span>
                             </div>
+                        </div>
+                        <div class="cta-container">
+                            <button class="w-full btn-premium btn-outline text-sm hover:btn-primary">Place a
+                                Bid</button>
                         </div>
                     </div>
                 </div>
-
-                <!-- NFT Card 2 -->
-                <div
-                    class="group bg-dark-card border border-white/10 rounded-2xl overflow-hidden hover-glow transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://www.videocopilot.net/blog/2013/06/futuristic-city-pack"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <!-- Card 3 -->
+                <div class="glass-card p-4 rounded-[24px]">
+                    <div class="relative rounded-[16px] overflow-hidden mb-6 h-[280px]">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover" alt="NFT 3">
                         <div
-                            class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/10">
-                            <i class="fa-solid fa-fire text-orange-500 mr-1"></i> Hot
-                        </div>
-                        <button
-                            class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
+                            class="absolute top-4 right-4 bg-dark/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/10">
+                            01d 22h</div>
                     </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
+                    <div class="card-content">
+                        <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h3 class="font-bold text-lg truncate">Future City 3000</h3>
-                                <p class="text-sm text-slate-400 flex items-center gap-1">by <span
-                                        class="text-primary">NeonDreamer</span></p>
-                            </div>
-                        </div>
-                        <div
-                            class="flex justify-between items-center mt-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
-                            <div>
-                                <p class="text-xs text-slate-400">Price</p>
-                                <div class="eth-price">
-                                    <img src="https://www.videocopilot.net/blog/2013/06/futuristic-city-pack" class="w-3.5 h-3.5"
-                                        alt="ETH">
-                                    <span>1.20 ETH</span>
-                                </div>
+                                <h3 class="text-xl font-bold mb-1">Golden Ratio #09</h3>
+                                <p class="text-white/40 text-sm">by @Mathema</p>
                             </div>
                             <div class="text-right">
-                                <p class="text-xs text-slate-400">USD Value</p>
-                                <p class="text-sm font-mono text-slate-300">$1,950</p>
+                                <span class="text-xs text-white/40 block">Price</span>
+                                <span class="text-primary font-bold">6.12 ETH</span>
                             </div>
+                        </div>
+                        <div class="cta-container">
+                            <button class="w-full btn-premium btn-outline text-sm hover:btn-primary">Place a
+                                Bid</button>
                         </div>
                     </div>
                 </div>
-
-                <!-- NFT Card 3 -->
-                <div
-                    class="group bg-dark-card border border-white/10 rounded-2xl overflow-hidden hover-glow transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1634986666676-ec8fd927c23d?q=80&w=800&auto=format&fit=crop"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <!-- Card 4 -->
+                <div class="glass-card p-4 rounded-[24px]">
+                    <div class="relative rounded-[16px] overflow-hidden mb-6 h-[280px]">
+                        <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover" alt="NFT 4">
                         <div
-                            class="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/10">
-                            <i class="fa-solid fa-clock text-accent mr-1"></i> 2h 05m
-                        </div>
-                        <button
-                            class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
+                            class="absolute top-4 right-4 bg-dark/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/10">
+                            05d 04h</div>
                     </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
+                    <div class="card-content">
+                        <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h3 class="font-bold text-lg truncate">Golden Ape #88</h3>
-                                <p class="text-sm text-slate-400 flex items-center gap-1">by <span
-                                        class="text-primary">ApeKing</span> <i
-                                        class="fa-solid fa-circle-check text-secondary text-xs"></i></p>
-                            </div>
-                        </div>
-                        <div
-                            class="flex justify-between items-center mt-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
-                            <div>
-                                <p class="text-xs text-slate-400">Current Bid</p>
-                                <div class="eth-price">
-                                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="w-3.5 h-3.5"
-                                        alt="ETH">
-                                    <span>5.00 ETH</span>
-                                </div>
+                                <h3 class="text-xl font-bold mb-1">Ethereal Realm #14</h3>
+                                <p class="text-white/40 text-sm">by @VoidWalker</p>
                             </div>
                             <div class="text-right">
-                                <p class="text-xs text-slate-400">USD Value</p>
-                                <p class="text-sm font-mono text-slate-300">$8,210</p>
+                                <span class="text-xs text-white/40 block">Price</span>
+                                <span class="text-primary font-bold">2.99 ETH</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- NFT Card 4 -->
-                <div
-                    class="group bg-dark-card border border-white/10 rounded-2xl overflow-hidden hover-glow transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=800&auto=format&fit=crop"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        <button
-                            class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-bold text-lg truncate">Liquid Dreams</h3>
-                                <p class="text-sm text-slate-400 flex items-center gap-1">by <span
-                                        class="text-primary">FlowState</span></p>
-                            </div>
-                        </div>
-                        <div
-                            class="flex justify-between items-center mt-4 p-3 bg-slate-800/50 rounded-lg border border-white/5">
-                            <div>
-                                <p class="text-xs text-slate-400">Price</p>
-                                <div class="eth-price">
-                                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="w-3.5 h-3.5"
-                                        alt="ETH">
-                                    <span>0.85 ETH</span>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-slate-400">USD Value</p>
-                                <p class="text-sm font-mono text-slate-300">$1,420</p>
-                            </div>
+                        <div class="cta-container">
+                            <button class="w-full btn-premium btn-outline text-sm hover:btn-primary">Place a
+                                Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="text-center mt-12">
-                <a href="marketplace.html"
-                    class="inline-block px-8 py-3 border border-white/20 rounded-full font-medium hover:bg-white/5 hover:border-white/40 transition-all">
-                    View All Drops
+        <!-- 3. FEATURED COLLECTIONS (Banners) -->
+        <section class="py-24 px-6 lg:px-12 bg-dark">
+            <h2 class="text-5xl font-['Outfit'] font-bold mb-16 text-center">Top <span
+                    class="text-pink">Collections</span></h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Collection 1 -->
+                <div class="group relative rounded-[32px] overflow-hidden cursor-pointer h-[500px]">
+                    <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=800&auto=format&fit=crop"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Coll 1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-cyan font-bold uppercase tracking-widest text-xs mb-2">Sci-Fi Series</p>
+                        <h3 class="text-4xl font-extrabold mb-4">Galactic Voyage</h3>
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/150?u=a1"
+                                class="w-10 h-10 rounded-full border-2 border-primary" alt="Artist">
+                            <span class="font-bold">By Commander X</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Collection 2 -->
+                <div class="group relative rounded-[32px] overflow-hidden cursor-pointer h-[500px]">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800&auto=format&fit=crop"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Coll 2">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-pink font-bold uppercase tracking-widest text-xs mb-2">Architecture</p>
+                        <h3 class="text-4xl font-extrabold mb-4">Crystal Citadels</h3>
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/150?u=a2"
+                                class="w-10 h-10 rounded-full border-2 border-primary" alt="Artist">
+                            <span class="font-bold">By ArchiTech</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Collection 3 -->
+                <div class="group relative rounded-[32px] overflow-hidden cursor-pointer h-[500px]">
+                    <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=800&auto=format&fit=crop"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        alt="Coll 3">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-primary font-bold uppercase tracking-widest text-xs mb-2">Abstract</p>
+                        <h3 class="text-4xl font-extrabold mb-4">Neon Pulse</h3>
+                        <div class="flex items-center gap-3">
+                            <img src="https://i.pravatar.cc/150?u=a3"
+                                class="w-10 h-10 rounded-full border-2 border-primary" alt="Artist">
+                            <span class="font-bold">By GlowMaster</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. TOP ARTISTS (Leaderboard Style) -->
+        <section class="py-24 px-6 lg:px-12 bg-dark/50 border-y border-white/5">
+            <h2 class="text-5xl font-['Outfit'] font-bold mb-16 text-center">Top <span class="text-cyan">Artists</span>
+            </h2>
+            <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+                <!-- Artist item repeated 12 times in real build, here 6 for sample -->
+                <a href="artists.html" class="glass-card p-6 rounded-3xl flex flex-col items-center group">
+                    <div class="relative mb-4">
+                        <img src="https://i.pravatar.cc/150?u=1"
+                            class="w-24 h-24 rounded-full border-4 border-white/10 group-hover:border-primary transition-all"
+                            alt="Avatar">
+                        <div
+                            class="absolute -top-2 -right-2 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+                            1</div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Alex Riva</h4>
+                    <p class="text-sm text-cyan font-bold">2,450 ETH</p>
+                </a>
+                <a href="artists.html" class="glass-card p-6 rounded-3xl flex flex-col items-center group">
+                    <div class="relative mb-4">
+                        <img src="https://i.pravatar.cc/150?u=2"
+                            class="w-24 h-24 rounded-full border-4 border-white/10 group-hover:border-cyan transition-all"
+                            alt="Avatar">
+                        <div
+                            class="absolute -top-2 -right-2 bg-cyan text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+                            2</div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Mora Sol</h4>
+                    <p class="text-sm text-cyan font-bold">1,820 ETH</p>
+                </a>
+                <a href="artists.html" class="glass-card p-6 rounded-3xl flex flex-col items-center group">
+                    <div class="relative mb-4">
+                        <img src="https://i.pravatar.cc/150?u=3"
+                            class="w-24 h-24 rounded-full border-4 border-white/10 group-hover:border-pink transition-all"
+                            alt="Avatar">
+                        <div
+                            class="absolute -top-2 -right-2 bg-pink text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+                            3</div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Dope Art</h4>
+                    <p class="text-sm text-cyan font-bold">1,645 ETH</p>
+                </a>
+                <a href="artists.html" class="glass-card p-6 rounded-3xl flex flex-col items-center group">
+                    <div class="relative mb-4">
+                        <img src="https://i.pravatar.cc/150?u=4"
+                            class="w-24 h-24 rounded-full border-4 border-white/10 group-hover:border-white transition-all"
+                            alt="Avatar">
+                        <div
+                            class="absolute -top-2 -right-2 bg-white/40 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+                            4</div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Zen Master</h4>
+                    <p class="text-sm text-cyan font-bold">980 ETH</p>
+                </a>
+                <a href="artists.html" class="glass-card p-6 rounded-3xl flex flex-col items-center group">
+                    <div class="relative mb-4">
+                        <img src="https://i.pravatar.cc/150?u=5"
+                            class="w-24 h-24 rounded-full border-4 border-white/10 group-hover:border-white transition-all"
+                            alt="Avatar">
+                        <div
+                            class="absolute -top-2 -right-2 bg-white/40 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+                            5</div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Cyber Ghoul</h4>
+                    <p class="text-sm text-cyan font-bold">820 ETH</p>
+                </a>
+                <a href="artists.html" class="glass-card p-6 rounded-3xl flex flex-col items-center group">
+                    <div class="relative mb-4">
+                        <img src="https://i.pravatar.cc/150?u=6"
+                            class="w-24 h-24 rounded-full border-4 border-white/10 group-hover:border-white transition-all"
+                            alt="Avatar">
+                        <div
+                            class="absolute -top-2 -right-2 bg-white/40 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+                            6</div>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Vox Pop</h4>
+                    <p class="text-sm text-cyan font-bold">540 ETH</p>
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Collections Section -->
-    <section class="py-24">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-display font-bold mb-12 text-center animate-on-scroll">Exclusive
-                Collections</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
-                <!-- Collection Card 1 -->
-                <div
-                    class="bg-dark-card border border-white/10 rounded-2xl overflow-hidden group hover:border-primary/50 transition-all">
-                    <div class="h-40 bg-cover bg-center"
-                        style="background-image: url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=800&auto=format&fit=crop');">
+        <!-- 5. LIVE AUCTIONS (Countdown Section) -->
+        <section class="py-24 px-6 lg:px-24 flex flex-col xl:flex-row gap-16 items-center">
+            <div class="xl:w-1/2">
+                <span
+                    class="inline-block px-4 py-1.5 rounded-full bg-pink/20 border border-pink text-pink text-sm font-bold uppercase mb-6">Ending
+                    Soon</span>
+                <h2 class="text-6xl font-['Outfit'] font-extrabold mb-8 leading-tight">Live <span
+                        class="text-gradient">Auctions</span></h2>
+                <div class="glass-card p-10 rounded-[40px] relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-bold mb-4">Nexus Core Genesis</h3>
+                        <div class="flex gap-10 mb-8 border-b border-white/10 pb-8">
+                            <div>
+                                <p class="text-white/40 mb-2 uppercase text-xs tracking-widest font-bold">Current Bid
+                                </p>
+                                <p class="text-4xl font-extrabold">24.50 ETH</p>
+                            </div>
+                            <div>
+                                <p class="text-white/40 mb-2 uppercase text-xs tracking-widest font-bold">Time Left</p>
+                                <div class="flex gap-4">
+                                    <div class="text-center">
+                                        <p class="text-3xl font-extrabold">08</p>
+                                        <span class="text-[10px] text-white/40 font-bold uppercase">Hrs</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-3xl font-extrabold">24</p>
+                                        <span class="text-[10px] text-white/40 font-bold uppercase">Min</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-3xl font-extrabold">12</p>
+                                        <span class="text-[10px] text-white/40 font-bold uppercase">Sec</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <button class="flex-1 btn-premium btn-primary text-xl">Place High Bid</button>
+                            <button
+                                class="w-16 h-16 rounded-2xl glass hover:bg-white/10 transition-all flex items-center justify-center text-white">
+                                <i data-lucide="info" class="w-6 h-6"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="px-6 pb-6 relative">
-                        <div
-                            class="w-20 h-20 rounded-xl border-4 border-dark-card bg-black -mt-10 mb-4 overflow-hidden relative z-10">
-                            <img src="https://images.unsplash.com/photo-1620332313337-58711451a54c?q=80&w=200&auto=format&fit=crop"
-                                class="w-full h-full object-cover">
+                    <!-- Glow effect -->
+                    <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-primary/20 rounded-full blur-[100px]"></div>
+                </div>
+            </div>
+            <div class="xl:w-1/2 grid grid-cols-2 gap-6">
+                <div class="rounded-3xl overflow-hidden h-[300px] border border-white/10"><img
+                        src="https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=800&auto=format&fit=crop"
+                        class="w-full h-full object-cover" alt="Auc 1"></div>
+                <div class="rounded-3xl overflow-hidden h-[300px] border border-white/10 mt-12"><img
+                        src="https://tse3.mm.bing.net/th/id/OIP.ypCxKsHMZ4hYT7ZBudRHOwAAAA?w=474&h=474&rs=1&pid=ImgDetMain&o=7&rm=3"
+                        class="w-full h-full object-cover" alt="Auc 2"></div>
+                <div class="rounded-3xl overflow-hidden h-[300px] border border-white/10 -mt-12"><img
+                        src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
+                        class="w-full h-full object-cover" alt="Auc 3"></div>
+                <div class="rounded-3xl overflow-hidden h-[300px] border border-white/10"><img
+                        src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop"
+                        class="w-full h-full object-cover" alt="Auc 4"></div>
+            </div>
+        </section>
+
+        <!-- 6. NFT CATEGORIES -->
+        <section class="py-24 px-6 lg:px-12 bg-dark">
+            <h2 class="text-4xl font-['Outfit'] font-bold mb-16 px-4">Browse by <span
+                    class="text-primary">Category</span></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Cat 1 -->
+                <div class="glass-card group cursor-pointer overflow-hidden rounded-[32px]">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                            alt="Art">
+                        <div class="absolute inset-0 bg-dark/40 flex items-center justify-center">
+                            <i data-lucide="palette" class="w-12 h-12 text-white"></i>
                         </div>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold flex items-center gap-2">Cyber Punks <i
-                                        class="fa-solid fa-circle-check text-secondary text-sm"></i></h3>
-                                <p class="text-sm text-slate-400 mt-1">Created by <span class="text-white">Larva
-                                        Labs</span></p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-slate-400">Floor</p>
-                                <p class="font-mono font-bold text-primary">15.5 ETH</p>
-                            </div>
-                        </div>
-                        <div class="mt-6 flex justify-between items-center text-sm border-t border-white/5 pt-4">
-                            <div>
-                                <span class="text-slate-400">Items:</span> <span class="font-medium">10K</span>
-                            </div>
-                            <div>
-                                <span class="text-slate-400">Vol:</span> <span class="font-medium">45K ETH</span>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-xl font-bold">Digital Art</h4>
+                        <p class="text-white/40 text-sm">12.4k Items</p>
                     </div>
                 </div>
-
-                <!-- Collection Card 2 -->
-                <div
-                    class="bg-dark-card border border-white/10 rounded-2xl overflow-hidden group hover:border-secondary/50 transition-all">
-                    <div class="h-40 bg-cover bg-center"
-                        style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop');">
+                <!-- Cat 2 -->
+                <div class="glass-card group cursor-pointer overflow-hidden rounded-[32px]">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                            alt="Gaming">
+                        <div class="absolute inset-0 bg-dark/40 flex items-center justify-center">
+                            <i data-lucide="gamepad-2" class="w-12 h-12 text-white"></i>
+                        </div>
                     </div>
-                    <div class="px-6 pb-6 relative">
-                        <div
-                            class="w-20 h-20 rounded-xl border-4 border-dark-card bg-black -mt-10 mb-4 overflow-hidden relative z-10">
-                            <img src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=200&auto=format&fit=crop"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold flex items-center gap-2">Neon City <i
-                                        class="fa-solid fa-circle-check text-secondary text-sm"></i></h3>
-                                <p class="text-sm text-slate-400 mt-1">Created by <span
-                                        class="text-white">FutureArt</span></p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-slate-400">Floor</p>
-                                <p class="font-mono font-bold text-secondary">2.8 ETH</p>
-                            </div>
-                        </div>
-                        <div class="mt-6 flex justify-between items-center text-sm border-t border-white/5 pt-4">
-                            <div>
-                                <span class="text-slate-400">Items:</span> <span class="font-medium">5K</span>
-                            </div>
-                            <div>
-                                <span class="text-slate-400">Vol:</span> <span class="font-medium">12K ETH</span>
-                            </div>
-                        </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-xl font-bold">Gaming</h4>
+                        <p class="text-white/40 text-sm">8.2k Items</p>
                     </div>
                 </div>
-
-                <!-- Collection Card 3 -->
-                <div
-                    class="bg-dark-card border border-white/10 rounded-2xl overflow-hidden group hover:border-accent/50 transition-all">
-                    <div class="h-40 bg-cover bg-center"
-                        style="background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop');">
+                <!-- Cat 3 -->
+                <div class="glass-card group cursor-pointer overflow-hidden rounded-[32px]">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                            alt="Music">
+                        <div class="absolute inset-0 bg-dark/40 flex items-center justify-center">
+                            <i data-lucide="music" class="w-12 h-12 text-white"></i>
+                        </div>
                     </div>
-                    <div class="px-6 pb-6 relative">
-                        <div
-                            class="w-20 h-20 rounded-xl border-4 border-dark-card bg-black -mt-10 mb-4 overflow-hidden relative z-10">
-                            <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=200&auto=format&fit=crop"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-xl font-bold flex items-center gap-2">Space Walkers</h3>
-                                <p class="text-sm text-slate-400 mt-1">Created by <span
-                                        class="text-white">CosmicDev</span></p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-slate-400">Floor</p>
-                                <p class="font-mono font-bold text-accent">0.5 ETH</p>
-                            </div>
-                        </div>
-                        <div class="mt-6 flex justify-between items-center text-sm border-t border-white/5 pt-4">
-                            <div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-xl font-bold">Music</h4>
+                        <p class="text-white/40 text-sm">3.9k Items</p>
+                    </div>
                 </div>
-
-                <!-- Artist 4 -->
-                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 text-center hover:border-primary/50 transition-all group">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Artist4" 
-                         class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-primary/20 group-hover:border-primary/40 transition-all">
-                    <h3 class="font-bold text-lg mb-1">FutureVision</h3>
-                    <p class="text-primary text-sm mb-3">4.1K Followers</p>
-                    <div class="flex justify-center gap-2">
-                        <span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded">Sci-Fi</span>
-                        <span class="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded">Concept</span>
+                <!-- Cat 4 -->
+                <div class="glass-card group cursor-pointer overflow-hidden rounded-[32px]">
+                    <div class="relative h-48">
+                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=800"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                            alt="Photography">
+                        <div class="absolute inset-0 bg-dark/40 flex items-center justify-center">
+                            <i data-lucide="camera" class="w-12 h-12 text-white"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-xl font-bold">Photography</h4>
+                        <p class="text-white/40 text-sm">5.1k Items</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Newsletter Section -->
-    <section class="py-24 bg-slate-900/30">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center animate-on-scroll">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Stay Updated</h2>
-                <p class="text-slate-400 mb-8 max-w-2xl mx-auto">Get the latest NFT drops, exclusive collections, and marketplace updates delivered to your inbox</p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input type="email" placeholder="Enter your email" 
-                           class="flex-1 px-6 py-4 bg-dark-card border border-white/10 rounded-full text-white placeholder-slate-400 focus:outline-none focus:border-primary transition-all">
-                    <button class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-bold hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all">
-                        Subscribe
-                    </button>
-                </div>
-                
-                <p class="text-sm text-slate-500 mt-4">Join 50,000+ NFT enthusiasts. No spam, unsubscribe anytime.</p>
-            </div>
-        </div>
-    </section>
+        <!-- 7. PLATFORM STATS (Refined Design) -->
+        <section class="py-20 px-6 lg:px-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-dark to-cyan/5"></div>
 
-    <!-- Footer -->
-    <footer class="bg-[#0B1120] border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
-        <div
-            class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50">
-        </div>
-
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <!-- Brand -->
-                <div class="space-y-6">
-                    <div class="flex items-center gap-2">
-                        <div
-                            class="w-8 h-8 rounded bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold">
-                            <i class="fa-solid fa-cube text-xs"></i>
-                        </div>
-                        <span class="font-display text-xl font-bold">NFTNexus</span>
+            <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Stat 1 -->
+                <div
+                    class="glass-card p-8 rounded-[32px] border border-white/5 flex flex-col items-center text-center group hover:border-primary/50 transition-all duration-500">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-7 h-7 text-primary"></i>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        The world's first and largest digital marketplace for crypto collectibles and non-fungible
-                        tokens (NFTs). Buy, sell, and discover exclusive digital items.
+                    <h3 class="text-5xl font-['Outfit'] font-black mb-1 text-gradient">245k</h3>
+                    <p class="text-xs text-white/40 uppercase tracking-[0.2em] font-bold">Active Users</p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div
+                    class="glass-card p-8 rounded-[32px] border border-white/5 flex flex-col items-center text-center group hover:border-cyan/50 transition-all duration-500">
+                    <div
+                        class="w-14 h-14 bg-cyan/10 rounded-2xl flex items-center justify-center mb-6 border border-cyan/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="bar-chart-3" class="w-7 h-7 text-cyan"></i>
+                    </div>
+                    <h3 class="text-5xl font-['Outfit'] font-black mb-1 text-gradient">840m</h3>
+                    <p class="text-xs text-white/40 uppercase tracking-[0.2em] font-bold">Volume Traded ($)</p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div
+                    class="glass-card p-8 rounded-[32px] border border-white/5 flex flex-col items-center text-center group hover:border-pink/50 transition-all duration-500">
+                    <div
+                        class="w-14 h-14 bg-pink/10 rounded-2xl flex items-center justify-center mb-6 border border-pink/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="link-2" class="w-7 h-7 text-pink"></i>
+                    </div>
+                    <h3 class="text-5xl font-['Outfit'] font-black mb-1 text-gradient">12</h3>
+                    <p class="text-xs text-white/40 uppercase tracking-[0.2em] font-bold">Blockchains</p>
+                </div>
+
+                <!-- Stat 4 -->
+                <div
+                    class="glass-card p-8 rounded-[32px] border border-white/5 flex flex-col items-center text-center group hover:border-primary/50 transition-all duration-500">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="w-7 h-7 text-primary"></i>
+                    </div>
+                    <h3 class="text-5xl font-['Outfit'] font-black mb-1 text-gradient">9k+</h3>
+                    <p class="text-xs text-white/40 uppercase tracking-[0.2em] font-bold">Daily Mints</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. HOW IT WORKS -->
+        <section class="py-24 px-6 lg:px-12 bg-dark">
+            <h2 class="text-5xl font-['Outfit'] font-bold mb-20 text-center">Join the <span
+                    class="text-cyan">Movement</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
+                <!-- Step 1 -->
+                <div class="relative p-10 glass-card rounded-[40px] text-center">
+                    <div
+                        class="w-20 h-20 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-primary/30">
+                        <i data-lucide="wallet-2" class="w-10 h-10 text-primary"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Set up Wallet</h4>
+                    <p class="text-white/50 leading-relaxed">Connect MetaMask or Trust Wallet to start your Web3
+                        journey.</p>
+                    <div class="hidden xl:block absolute -right-5 top-1/2 -translate-y-1/2 text-white/10">
+                        <i data-lucide="chevron-right" class="w-10 h-10"></i>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative p-10 glass-card rounded-[40px] text-center">
+                    <div
+                        class="w-20 h-20 bg-cyan/20 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-cyan/30">
+                        <i data-lucide="layout-grid" class="w-10 h-10 text-cyan"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Create Collection</h4>
+                    <p class="text-white/50 leading-relaxed">Organize your art into curated collections for collectors.
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-discord"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-twitter"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-instagram"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-telegram"></i></a>
+                    <div class="hidden xl:block absolute -right-5 top-1/2 -translate-y-1/2 text-white/10">
+                        <i data-lucide="chevron-right" class="w-10 h-10"></i>
                     </div>
                 </div>
-
-                <!-- Links -->
-                <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Marketplace</h4>
-                    <ul class="space-y-3 text-slate-400 text-sm">
-                        <li><a href="marketplace.html" class="hover:text-primary transition-colors">All NFTs</a></li>
-                        <li><a href="collections.html" class="hover:text-primary transition-colors">Collections</a></li>
-                        <li><a href="create-nft.html" class="hover:text-primary transition-colors">Create</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Trending</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Resources</h4>
-                    <ul class="space-y-3 text-slate-400 text-sm">
-                        <li><a href="#" class="hover:text-primary transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Partners</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Newsletter</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Join Newsletter</h4>
-                    <p class="text-slate-400 text-sm mb-4">Get the latest updates and drops.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email"
-                            class="bg-white/5 border border-white/10 rounded-l-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-primary text-white">
-                        <button
-                            class="bg-primary px-4 py-2 rounded-r-lg hover:bg-primary/90 transition-colors text-white"><i
-                                class="fa-solid fa-arrow-right"></i></button>
+                <!-- Step 3 -->
+                <div class="relative p-10 glass-card rounded-[40px] text-center">
+                    <div
+                        class="w-20 h-20 bg-pink/20 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-pink/30">
+                        <i data-lucide="plus-square" class="w-10 h-10 text-pink"></i>
                     </div>
+                    <h4 class="text-2xl font-bold mb-4">Add Your NFTs</h4>
+                    <p class="text-white/50 leading-relaxed">Upload your digital files, set prices, and mint on-chain.
+                    </p>
+                    <div class="hidden xl:block absolute -right-5 top-1/2 -translate-y-1/2 text-white/10">
+                        <i data-lucide="chevron-right" class="w-10 h-10"></i>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="p-10 glass-card rounded-[40px] text-center">
+                    <div
+                        class="w-20 h-20 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-primary/30">
+                        <i data-lucide="tag" class="w-10 h-10 text-primary"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">List for Sale</h4>
+                    <p class="text-white/50 leading-relaxed">Choose between fixed price or timed auctions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. TESTIMONIALS -->
+        <section class="py-24 px-6 lg:px-12 bg-dark/50 overflow-hidden relative">
+            <div class="relative z-10">
+                <h2 class="text-5xl font-['Outfit'] font-bold mb-16 px-4">Trusted by <span class="text-pink">Global
+                        Artists</span></h2>
+                <div class="flex gap-8 animate-scroll hover:pause">
+                    <!-- Feedback card pattern repeated -->
+                    <div class="min-w-[400px] glass-card p-10 rounded-[32px]">
+                        <div class="flex gap-1 mb-6">
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                        </div>
+                        <p class="text-xl italic mb-8 leading-relaxed">"The most intuitive NFT platform I've ever used.
+                            The gas fees are low and the community is incredible."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/150?u=test1" class="w-14 h-14 rounded-full" alt="User">
+                            <div>
+                                <h5 class="font-bold">Sarah Jenkins</h5>
+                                <p class="text-white/40 text-sm">3D Artist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="min-w-[400px] glass-card p-10 rounded-[32px]">
+                        <div class="flex gap-1 mb-6">
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-primary text-primary"></i>
+                        </div>
+                        <p class="text-xl italic mb-8 leading-relaxed">"Web3 is the future, and this platform is paving
+                            the way. My collections sold out in minutes!"</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/150?u=test2" class="w-14 h-14 rounded-full" alt="User">
+                            <div>
+                                <h5 class="font-bold">Marcus Vane</h5>
+                                <p class="text-white/40 text-sm">Collector</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More cards here... -->
+                </div>
+            </div>
+            <!-- BG Glow -->
+            <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-cyan/10 rounded-full blur-[120px]"></div>
+        </section>
+
+        <!-- 10. PARTNER LOGOS -->
+        <section class="py-16 px-6 lg:px-24 bg-dark/80 backdrop-blur-md border-y border-white/5 opacity-60">
+            <div class="flex flex-wrap justify-between items-center gap-12 grayscale hover:grayscale-0 transition-all">
+                <span class="text-3xl font-extrabold uppercase italic font-['Outfit'] opacity-30">Ethereum</span>
+                <span class="text-3xl font-extrabold uppercase italic font-['Outfit'] opacity-30">Polygon</span>
+                <span class="text-3xl font-extrabold uppercase italic font-['Outfit'] opacity-30">Solana</span>
+                <span class="text-3xl font-extrabold uppercase italic font-['Outfit'] opacity-30">Binance</span>
+                <span class="text-3xl font-extrabold uppercase italic font-['Outfit'] opacity-30">TrustWallet</span>
+                <span class="text-3xl font-extrabold uppercase italic font-['Outfit'] opacity-30">MetaMask</span>
+            </div>
+        </section>
+
+        <!-- 11. NEWSLETTER -->
+        <section class="py-24 px-6 lg:px-24">
+            <div
+                class="bg-gradient-to-br from-primary/30 to-pink/30 rounded-[48px] p-12 lg:p-24 relative overflow-hidden text-center">
+                <div class="relative z-10 max-w-2xl mx-auto">
+                    <h2 class="text-5xl font-['Outfit'] font-extrabold mb-6">Never Miss a <span
+                            class="text-gradient">Drop</span></h2>
+                    <p class="text-xl text-white/70 mb-12">Subscribe to our newsletter to get top stories, upcoming
+                        auctions, and exclusive artist insights delivered weekly.</p>
+                    <form class="flex flex-col md:flex-row gap-4">
+                        <input type="email" placeholder="Enter your email address"
+                            class="flex-1 bg-dark/50 border border-white/10 rounded-2xl px-8 h-[64px] text-white focus:outline-none focus:border-cyan text-lg">
+                        <button type="submit" class="btn-premium btn-primary text-lg h-[64px] px-12">Subscribe
+                            Now</button>
+                    </form>
+                </div>
+                <!-- Abstract visual -->
+                <div class="absolute top-0 right-0 p-12 opacity-10">
+                    <i data-lucide="send" class="w-64 h-64 text-white"></i>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER (Section 12) -->
+    <footer class="bg-dark/80 pt-24 pb-12 px-6 lg:px-24 border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            <!-- Brand Info -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                <a href="index.html" class="flex items-center gap-2 mb-8 group">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-['Outfit'] font-extrabold tracking-tight">ART<span
+                            class="text-primary">NFT</span></span>
+                </a>
+                <p class="text-white/50 leading-relaxed mb-10 text-lg">
+                    The world's most innovative NFT marketplace for professional digital artists and high-tier
+                    collectors. Experience Web3 art like never before.
+                </p>
+                <!-- Socials (Guideline 7 hover effect) -->
+                <div class="flex gap-5">
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-cyan hover:border-cyan hover:-translate-y-2 transition-all"><i
+                            data-lucide="twitter"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-primary hover:border-primary hover:-translate-y-2 transition-all"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-pink hover:border-pink hover:-translate-y-2 transition-all"><i
+                            data-lucide="github"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-white hover:border-white hover:-translate-y-2 transition-all"><i
+                            data-lucide="discord"></i></a>
                 </div>
             </div>
 
-            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm">© 2026 NFTNexus. All rights reserved.</p>
-                <div class="flex items-center gap-6">
-                    <span class="text-xs text-green-500 flex items-center gap-1"><i
-                            class="fa-solid fa-circle text-[6px]"></i> Mainnet Operational</span>
-                    <div class="flex gap-4 opacity-50">
-                        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="w-5 grayscale">
-                        <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" class="w-5 grayscale">
-                    </div>
-                </div>
+            <!-- Quick Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Marketplace</h4>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">All NFTs</a>
+                <a href="collections.html" class="text-white/50 hover:text-cyan transition-all w-fit">Collections</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Photography</a>
+                <a href="auctions.html" class="text-white/50 hover:text-cyan transition-all w-fit">Live Auctions</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Virtual Reality</a>
+            </div>
+
+            <!-- Platform Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Platform</h4>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">About Us</a>
+                <a href="blog.html" class="text-white/50 hover:text-primary transition-all w-fit">Latest News</a>
+                <a href="contact.html" class="text-white/50 hover:text-primary transition-all w-fit">Support Center</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Platform Story</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Roadmap</a>
+            </div>
+
+            <!-- More Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Community</h4>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Artists Hub</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Partner Programs</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Affiliates</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Developer API</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Careers</a>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div
+            class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 text-white/30 font-medium">
+            <p>© 2026 Digital Art NFT Platform. All rights reserved.</p>
+            <div class="flex gap-10 mt-6 md:mt-0">
+                <a href="#" class="hover:text-white transition-all">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-all">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-all">Cookies</a>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="assets/js/wallet.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- SCRIPTS -->
     <script>
-        // Init Particles
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#8B5CF6" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#06B6D4", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } },
-                "modes": { "repulse": { "distance": 100, "duration": 0.4 } }
-            },
-            "retina_detect": true
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-toggle');
+        const closeBtn = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Simple Fade in on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        // Apply scroll animations to major sections
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
         });
     </script>
 </body>

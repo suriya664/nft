@@ -1,480 +1,425 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | NFTNexus</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <title>About Our Vision | Digital Art NFT Platform</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/nolan/64/nft.png">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#8B5CF6',
-                        secondary: '#06B6D4',
-                        accent: '#EC4899',
-                        dark: { bg: '#0F172A', card: '#1E293B', sidebar: '#0B1120' }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
+                    colors: { primary: '#8B5CF6', cyan: '#06B6D4', pink: '#EC4899', dark: '#0B0E14' }
                 }
             }
         }
     </script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/dark-mode.css">
-    <link rel="stylesheet" href="assets/css/web3.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/theme.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-slate-50 text-slate-900 dark:bg-[#0F172A] dark:text-slate-100 min-h-screen flex flex-col">
+<body class="bg-dark text-white font-['Inter']">
 
-    <!-- Navbar -->
-    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent" id="navbar">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer"
-                    onclick="window.location.href='index.html'">
-                    <div
-                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl font-bold animate-pulse-glow">
-                        <i class="fa-solid fa-cube"></i>
-                    </div>
-                    <span class="font-display text-2xl font-bold tracking-tight">NFT<span
-                            class="text-primary">Nexus</span></span>
-                </div>
-
-                <!-- Desktop Nav -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-sm font-medium hover:text-primary transition-colors">Home</a>
-                    <a href="index-v2.html" class="text-sm font-medium hover:text-primary transition-colors">Home v2</a>
-                    <a href="marketplace.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Explore</a>
-                    <a href="collections.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Collections</a>
-                    <a href="create-nft.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Create</a>
-                    <a href="about.html" class="text-sm font-medium hover:text-primary transition-colors">About</a>
-                    <a href="login.html" class="text-sm font-medium hover:text-primary transition-colors">Login</a>
-                    <a href="register.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Register</a>
-                </nav>
-
-                <!-- Right Actions -->
-                <div class="hidden md:flex items-center gap-4">
-
-                    <!-- Connect Wallet Btn -->
-                    <button
-                        class="btn-connect-wallet bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-primary/25">
-                        Connect Wallet
-                    </button>
-
-                    <!-- User Menu (Hidden by default) -->
-                    <div class="user-wallet-menu hidden relative group">
-                        <div class="flex items-center gap-2 cursor-pointer">
-                            <div class="w-9 h-9 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 p-[2px]">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"
-                                    class="w-full h-full rounded-full bg-slate-900 object-cover">
-                            </div>
-                        </div>
-                        <!-- Dropdown -->
-                        <div
-                            class="absolute right-0 top-full mt-2 w-48 bg-[#1E293B] border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right z-50">
-                            <div class="p-3 border-b border-white/10">
-                                <p class="text-xs text-secondary font-mono wallet-address">0x...</p>
-                            </div>
-                            <a href="dashboard-collector.html"
-                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">Dashboard</a>
-                            <a href="profile.html"
-                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">My Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary"
-                                id="btn-disconnect">Disconnect</a>
-                        </div>
-                    </div>
-
-                    <!-- Theme Toggle -->
-                    <button
-                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/5">
-                        <i class="fa-solid fa-moon dark:hidden text-slate-700"></i>
-                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
-                    </button>
-
-                    <!-- Language -->
-                    <div class="text-sm font-medium cursor-pointer hover:text-primary">EN</div>
-                </div>
-
-                <!-- Mobile Menu Details -->
-                <div class="md:hidden flex items-center gap-4">
-                    <button
-                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center">
-                        <i class="fa-solid fa-moon dark:hidden text-slate-700"></i>
-                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="text-2xl">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
+    <!-- NAVIGATION -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10 px-6 lg:px-12 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div
+                class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i data-lucide="zap" class="text-white w-6 h-6"></i>
             </div>
-        </div>
-    </header>
+            <span
+                class="text-2xl font-['Outfit'] font-extrabold tracking-tight group-hover:text-cyan transition-colors">ART<span
+                    class="text-primary">NFT</span></span>
+        </a>
 
-    <!-- Mobile Menu Overlay -->
+        <div class="hidden lg:flex items-center gap-10">
+            <a href="index.html" class="text-white/70 hover:text-white transition-all">Home</a>
+            <a href="explore.html" class="text-white/70 hover:text-white transition-all">Explore</a>
+            <a href="artists.html" class="text-white/70 hover:text-white transition-all">Artists</a>
+            <a href="collections.html" class="text-white/70 hover:text-white transition-all">Collections</a>
+            <a href="auctions.html" class="text-white/70 hover:text-white transition-all">Drops</a>
+            <a href="about.html" class="text-cyan font-bold underline underline-offset-8">About</a>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-6">
+            <button
+                class="theme-toggle w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-all transform hover:rotate-12">
+                <i data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+            <a href="login.html" class="text-white font-medium hover:text-primary transition-colors">Login</a>
+            <a href="dashboard.html" class="btn-premium btn-primary text-sm">Connect Wallet</a>
+        </div>
+
+        <button id="menu-toggle" class="lg:hidden text-white p-2">
+            <i data-lucide="menu" class="w-8 h-8"></i>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU (Left Slide) -->
     <div id="mobile-menu"
-        class="fixed inset-0 z-[60] bg-[#0F172A] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
-        <div class="p-6 flex justify-between items-center border-b border-white/10">
-            <span class="font-display text-xl font-bold">Menu</span>
-            <button id="close-mobile-menu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        class="fixed inset-0 z-[60] bg-dark/95 backdrop-blur-xl lg:hidden flex flex-col p-8 w-[80%] max-w-[320px] h-screen border-r border-white/10">
+        <div class="flex items-center justify-between mb-12">
+            <span class="text-2xl font-['Outfit'] font-bold">ART<span class="text-primary">NFT</span></span>
+            <button id="menu-close" class="text-white"><i data-lucide="x" class="w-8 h-8"></i></button>
         </div>
-        <div class="flex-1 flex flex-col p-6 space-y-6 overflow-y-auto">
-            <a href="index.html" class="text-lg font-medium">Home</a>
-            <a href="index-v2.html" class="text-lg font-medium">Home v2</a>
-            <a href="marketplace.html" class="text-lg font-medium">Explore</a>
-            <a href="collections.html" class="text-lg font-medium">Collections</a>
-            <a href="create-nft.html" class="text-lg font-medium">Create</a>
-            <a href="about.html" class="text-lg font-medium">About</a>
-            <a href="login.html" class="text-lg font-medium">Login</a>
-            <a href="register.html" class="text-lg font-medium">Register</a>
-            
-            <div class="border-t border-white/10 pt-6">
-                <button class="btn-connect-wallet w-full bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full font-medium">
-                    Connect Wallet
-                </button>
-            </div>
+        <div class="flex flex-col gap-6 text-xl">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="artists.html">Artists</a>
+            <a href="collections.html">Collections</a>
+            <a href="auctions.html">Drops</a>
+            <hr class="border-white/10 my-4">
+            <a href="login.html" class="btn-premium btn-outline text-lg">Login</a>
+            <a href="dashboard.html" class="btn-premium btn-primary text-lg">Connect Wallet</a>
         </div>
     </div>
 
-    <!-- Hero -->
-    <div class="relative py-24 bg-dark-bg overflow-hidden">
-        <div
-            class="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&fit=crop')] bg-cover bg-center opacity-20">
-        </div>
-        <div class="container mx-auto px-4 relative z-10 text-center">
-            <h1 class="text-5xl md:text-6xl font-display font-bold mb-6">Building the Future of <br><span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Digital
-                    Ownership</span></h1>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">NFTNexus is the world's premier marketplace
-                for NFTs, where creators and collectors convene to trade unique digital assets secured by the
-                blockchain.</p>
-        </div>
-    </div>
+    <!-- MAIN CONTENT -->
+    <main class="mt-[80px]">
 
-    <!-- Mission -->
-    <div class="container mx-auto px-4 py-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-3xl font-display font-bold mb-6">Our Mission</h2>
-                <p class="text-slate-400 mb-6 text-lg leading-relaxed">
-                    We believe that the future of the internet is decentralized. Our mission is to accelerate the
-                    world's transition to cryptocurrency and digital assets by building an open, accessible, and
-                    user-friendly marketplace.
-                </p>
-                <p class="text-slate-400 text-lg leading-relaxed">
-                    We are empowering creators to monetize their work like never before and giving collectors true
-                    ownership of digital items.
-                </p>
+        <!-- 1. ABOUT HERO (Centralized - Guideline 31) -->
+        <section class="relative py-28 px-6 text-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=2000"
+                    class="w-full h-full object-cover opacity-20" alt="BG">
+                <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-dark"></div>
+            </div>
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <h1 class="text-6xl md:text-8xl font-['Outfit'] font-extrabold mb-8">Pioneering <br> <span
+                        class="text-gradient">Digital Realms</span></h1>
+                <p class="text-xl text-white/50 max-w-2xl mx-auto leading-relaxed">We are more than a marketplace. We
+                    are the architects of the next creative renaissance, powered by decentralization and high-fidelity
+                    art.</p>
+            </div>
+        </section>
 
-                <div class="grid grid-cols-2 gap-6 mt-8">
-                    <div>
-                        <h3 class="text-4xl font-bold mb-1">2.5M+</h3>
-                        <p class="text-slate-500 uppercase text-xs tracking-wider">NFTs Minted</p>
-                    </div>
-                    <div>
-                        <h3 class="text-4xl font-bold mb-1">$500M+</h3>
-                        <p class="text-slate-500 uppercase text-xs tracking-wider">Trading Volume</p>
-                    </div>
-                    <div>
-                        <h3 class="text-4xl font-bold mb-1">150K+</h3>
-                        <p class="text-slate-500 uppercase text-xs tracking-wider">Active Users</p>
-                    </div>
-                    <div>
-                        <h3 class="text-4xl font-bold mb-1">20+</h3>
-                        <p class="text-slate-500 uppercase text-xs tracking-wider">Countries</p>
-                    </div>
+        <!-- 2. STORY & MISSION -->
+        <section class="py-24 px-6 lg:px-24 flex flex-col xl:flex-row gap-20 items-center">
+            <div class="xl:w-1/2">
+                <h2 class="text-5xl font-['Outfit'] font-bold mb-10">Our <span class="text-cyan">Creative</span> Odyssey
+                </h2>
+                <div class="space-y-6 text-white/60 text-lg leading-relaxed">
+                    <p>Founded in 2024, Digital Art NFT Platform emerged from a simple observation: the digital art
+                        world lacked a premium, high-fidelity space that treated NFTs as true masterpieces.</p>
+                    <p>Our mission is to empower artists with the tools of the future, enabling them to build sovereign
+                        digital kingdoms while providing collectors with an unparalleled acquisition experience.</p>
                 </div>
             </div>
-            <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary blur-3xl opacity-20"></div>
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&fit=crop"
-                    class="relative rounded-2xl shadow-2xl border border-white/10">
-            </div>
-        </div>
-    </div>
-
-    <!-- Team -->
-    <div class="bg-dark-card border-y border-white/5 py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-display font-bold mb-4">Meet the Team</h2>
-                <p class="text-slate-400">The visionaries behind NFTNexus.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Member 1 -->
+            <div class="xl:w-1/2 grid grid-cols-2 gap-6 scale-95">
                 <div
-                    class="bg-dark-bg border border-white/10 rounded-xl p-6 text-center group hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=CEO"
-                        class="w-24 h-24 rounded-full mx-auto mb-4 bg-white/5">
-                    <h3 class="font-bold text-lg mb-1">Alex Chen</h3>
-                    <p class="text-primary text-sm mb-3">CEO & Co-Founder</p>
-                    <div class="flex justify-center gap-3">
-                        <a href="#" class="text-slate-500 hover:text-white"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-white"><i
-                                class="fa-brands fa-linkedin"></i></a>
+                    class="glass-card aspect-square rounded-[40px] flex items-center justify-center p-12 text-center group border border-white/5 hover:border-primary/50 transition-all">
+                    <div>
+                        <i data-lucide="eye" class="w-12 h-12 text-primary mx-auto mb-6"></i>
+                        <h4 class="text-xl font-bold">Vision</h4>
                     </div>
                 </div>
-                <!-- Member 2 -->
                 <div
-                    class="bg-dark-bg border border-white/10 rounded-xl p-6 text-center group hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=CTO"
-                        class="w-24 h-24 rounded-full mx-auto mb-4 bg-white/5">
-                    <h3 class="font-bold text-lg mb-1">Sarah Johnson</h3>
-                    <p class="text-primary text-sm mb-3">CTO</p>
-                    <div class="flex justify-center gap-3">
-                        <a href="#" class="text-slate-500 hover:text-white"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-white"><i
-                                class="fa-brands fa-linkedin"></i></a>
+                    class="glass-card aspect-square rounded-[40px] flex items-center justify-center p-12 text-center mt-12 group border border-white/5 hover:border-cyan/50 transition-all">
+                    <div>
+                        <i data-lucide="target" class="w-12 h-12 text-cyan mx-auto mb-6"></i>
+                        <h4 class="text-xl font-bold">Mission</h4>
                     </div>
                 </div>
-                <!-- Member 3 -->
+            </div>
+        </section>
+
+        <!-- 3. VISION & VALUES (Cards) -->
+        <section class="py-24 px-6 lg:px-12 bg-dark/50 border-y border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="p-10 glass-card rounded-[48px]">
+                    <h3 class="text-2xl font-bold mb-6 text-primary">Decentralization</h3>
+                    <p class="text-white/40 leading-relaxed font-medium">True ownership means no middlemen. We believe
+                        in a sovereign future where artists control their destiny and collectors own their assets
+                        on-chain.</p>
+                </div>
+                <div class="p-10 glass-card rounded-[48px]">
+                    <h3 class="text-2xl font-bold mb-6 text-cyan">Excellence</h3>
+                    <p class="text-white/40 leading-relaxed font-medium">We curate only the highest quality digital art.
+                        Every pixel matters. Our platform is designed to showcase art in its most pristine form.</p>
+                </div>
+                <div class="p-10 glass-card rounded-[48px]">
+                    <h3 class="text-2xl font-bold mb-6 text-pink">Innovation</h3>
+                    <p class="text-white/40 leading-relaxed font-medium">From custom smart contracts to immersive VR
+                        galleries, we are constantly pushing the boundaries of what a marketplace can be.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. WEB3 TECHNOLOGY (Diagram Feeling) -->
+        <section class="py-32 px-6 lg:px-24 text-center">
+            <h2 class="text-5xl font-['Outfit'] font-bold mb-20">The <span class="text-gradient">Tech Stack</span></h2>
+            <div class="relative max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+                <!-- Node 1 -->
+                <div class="flex flex-col items-center group">
+                    <div
+                        class="w-32 h-32 glass rounded-[32px] flex items-center justify-center border-2 border-primary/20 group-hover:border-primary group-hover:scale-110 transition-all shadow-2xl">
+                        <i data-lucide="layers" class="w-12 h-12 text-primary"></i>
+                    </div>
+                    <span class="mt-6 font-bold text-lg">Ethereum L2</span>
+                </div>
+                <!-- Connector (hidden on mobile) -->
+                <div class="hidden md:block h-[2px] w-24 bg-gradient-to-r from-primary to-cyan"></div>
+                <!-- Node 2 -->
+                <div class="flex flex-col items-center group">
+                    <div
+                        class="w-32 h-32 glass rounded-[32px] flex items-center justify-center border-2 border-cyan/20 group-hover:border-cyan group-hover:scale-110 transition-all shadow-2xl">
+                        <i data-lucide="database" class="w-12 h-12 text-cyan"></i>
+                    </div>
+                    <span class="mt-6 font-bold text-lg">IPFS Storage</span>
+                </div>
+                <!-- Connector -->
+                <div class="hidden md:block h-[2px] w-24 bg-gradient-to-r from-cyan to-pink"></div>
+                <!-- Node 3 -->
+                <div class="flex flex-col items-center group">
+                    <div
+                        class="w-32 h-32 glass rounded-[32px] flex items-center justify-center border-2 border-pink/20 group-hover:border-pink group-hover:scale-110 transition-all shadow-2xl">
+                        <i data-lucide="shield-check" class="w-12 h-12 text-pink"></i>
+                    </div>
+                    <span class="mt-6 font-bold text-lg">Audited Contracts</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ROADMAP (Timeline) -->
+        <section class="py-24 px-6 lg:px-12 bg-dark/50">
+            <h2 class="text-4xl font-['Outfit'] font-bold mb-20 text-center">Development <span
+                    class="text-cyan">Roadmap</span></h2>
+            <div
+                class="max-w-5xl mx-auto space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/10 before:to-transparent">
+                <!-- Item 1 -->
                 <div
-                    class="bg-dark-bg border border-white/10 rounded-xl p-6 text-center group hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Design"
-                        class="w-24 h-24 rounded-full mx-auto mb-4 bg-white/5">
-                    <h3 class="font-bold text-lg mb-1">David Kim</h3>
-                    <p class="text-primary text-sm mb-3">Head of Design</p>
-                    <div class="flex justify-center gap-3">
-                        <a href="#" class="text-slate-500 hover:text-white"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-white"><i
-                                class="fa-brands fa-linkedin"></i></a>
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-dark group-[.is-active]:bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="check" class="w-5 h-5"></i>
                     </div>
-                </div>
-                <!-- Member 4 -->
-                <div
-                    class="bg-dark-bg border border-white/10 rounded-xl p-6 text-center group hover:-translate-y-2 transition-transform duration-300">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Com"
-                        class="w-24 h-24 rounded-full mx-auto mb-4 bg-white/5">
-                    <h3 class="font-bold text-lg mb-1">Maria Garcia</h3>
-                    <p class="text-primary text-sm mb-3">Community Lead</p>
-                    <div class="flex justify-center gap-3">
-                        <a href="#" class="text-slate-500 hover:text-white"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-white"><i
-                                class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Values Section -->
-    <section class="py-24 bg-slate-900/30">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Our Values</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">The principles that guide everything we do</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Value 1 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl">
-                        🎨
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Creativity First</h3>
-                    <p class="text-slate-400">Empowering artists and creators to express their unique vision through digital art.</p>
-                </div>
-
-                <!-- Value 2 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center text-white text-2xl">
-                        🔒
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">True Ownership</h3>
-                    <p class="text-slate-400">Ensuring verifiable ownership and provenance through blockchain technology.</p>
-                </div>
-
-                <!-- Value 3 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center text-white text-2xl">
-                        🌍
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Global Community</h3>
-                    <p class="text-slate-400">Building a worldwide community of artists, collectors, and enthusiasts.</p>
-                </div>
-
-                <!-- Value 4 -->
-                <div class="text-center">
-                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl">
-                        ⚡
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Innovation</h3>
-                    <p class="text-slate-400">Pushing the boundaries of what's possible in the digital art space.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technology Section -->
-    <section class="py-24">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Powered by Technology</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Built on the most advanced blockchain infrastructure</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Tech 1 -->
-                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-all">
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="w-12 h-12">
-                        <h3 class="text-xl font-bold">Ethereum</h3>
-                    </div>
-                    <p class="text-slate-400">The most secure and established smart contract platform for NFTs.</p>
-                </div>
-
-                <!-- Tech 2 -->
-                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-secondary/50 transition-all">
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" class="w-12 h-12">
-                        <h3 class="text-xl font-bold">Polygon</h3>
-                    </div>
-                    <p class="text-slate-400">Fast, low-cost transactions making NFTs accessible to everyone.</p>
-                </div>
-
-                <!-- Tech 3 -->
-                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-accent/50 transition-all">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">IPFS</div>
-                        <h3 class="text-xl font-bold">IPFS</h3>
-                    </div>
-                    <p class="text-slate-400">Decentralized storage ensuring your NFTs are permanent and censorship-resistant.</p>
-                </div>
-
-                <!-- Tech 4 -->
-                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-all">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center text-white font-bold">AI</div>
-                        <h3 class="text-xl font-bold">AI Curation</h3>
-                    </div>
-                    <p class="text-slate-400">Advanced algorithms helping discover and promote the best digital art.</p>
-                </div>
-
-                <!-- Tech 5 -->
-                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-accent/50 transition-all">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center text-white font-bold">SDK</div>
-                        <h3 class="text-xl font-bold">Developer Tools</h3>
-                    </div>
-                    <p class="text-slate-400">Comprehensive APIs and SDKs for developers to build on our platform.</p>
-                </div>
-
-                <!-- Tech 6 -->
-                <div class="bg-dark-card border border-white/10 rounded-2xl p-6 hover:border-primary/50 transition-all">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">🔐</div>
-                        <h3 class="text-xl font-bold">Security</h3>
-                    </div>
-                    <p class="text-slate-400">Enterprise-grade security with regular audits and best practices.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#0B1120] border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
-        <div
-            class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50">
-        </div>
-
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <!-- Brand -->
-                <div class="space-y-6">
-                    <div class="flex items-center gap-2">
-                        <div
-                            class="w-8 h-8 rounded bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold">
-                            <i class="fa-solid fa-cube text-xs"></i>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-8 glass-card rounded-3xl border border-white/10 hover:border-primary/50 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-['Outfit'] font-bold text-primary">Q1 2024</span>
+                            <span class="text-xs bg-white/5 px-2 py-1 rounded text-white/40">Completed</span>
                         </div>
-                        <span class="font-display text-xl font-bold">NFTNexus</span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        The world's first and largest digital marketplace for crypto collectibles and non-fungible
-                        tokens (NFTs). Buy, sell, and discover exclusive digital items.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-discord"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-twitter"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-instagram"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all"><i
-                                class="fa-brands fa-telegram"></i></a>
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Foundation Launch</h4>
+                        <p class="text-sm text-white/50">Core marketplace engine and smart contract auditing.</p>
                     </div>
                 </div>
-
-                <!-- Links -->
-                <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Marketplace</h4>
-                    <ul class="space-y-3 text-slate-400 text-sm">
-                        <li><a href="marketplace.html" class="hover:text-primary transition-colors">All NFTs</a></li>
-                        <li><a href="collections.html" class="hover:text-primary transition-colors">Collections</a></li>
-                        <li><a href="create-nft.html" class="hover:text-primary transition-colors">Create</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Trending</a></li>
-                    </ul>
+                <!-- Item 2 -->
+                <div
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-dark group-[.is-active]:bg-cyan text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <i data-lucide="loader" class="w-5 h-5 animate-spin"></i>
+                    </div>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-8 glass-card rounded-3xl border border-white/10 hover:border-cyan/50 transition-all">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-['Outfit'] font-bold text-cyan">Q4 2026</span>
+                            <span class="text-xs bg-cyan/20 px-2 py-1 rounded text-cyan">Active</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">Global Expansion</h4>
+                        <p class="text-sm text-white/50">Cross-chain bridge integration (Solana/Polygon).</p>
+                    </div>
                 </div>
-
-                <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Resources</h4>
-                    <ul class="space-y-3 text-slate-400 text-sm">
-                        <li><a href="#" class="hover:text-primary transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Partners</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-primary transition-colors">Newsletter</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Join Newsletter</h4>
-                    <p class="text-slate-400 text-sm mb-4">Get the latest updates and drops.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email"
-                            class="bg-white/5 border border-white/10 rounded-l-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-primary text-white">
-                        <button
-                            class="bg-primary px-4 py-2 rounded-r-lg hover:bg-primary/90 transition-colors text-white"><i
-                                class="fa-solid fa-arrow-right"></i></button>
+                <!-- Item 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-dark text-white/30 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <span class="w-2 h-2 rounded-full bg-white/30"></span>
+                    </div>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-8 glass-card rounded-3xl border border-white/10 opacity-50">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-['Outfit'] font-bold text-white/30">Q2 2027</span>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2 uppercase tracking-tighter">VR Meta-Gallery</h4>
+                        <p class="text-sm text-white/50">Fully immersive virtual experience for elite collectors.</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm">© 2026 NFTNexus. All rights reserved.</p>
-                <div class="flex items-center gap-6">
-                    <span class="text-xs text-green-500 flex items-center gap-1"><i
-                            class="fa-solid fa-circle text-[6px]"></i> Mainnet Operational</span>
-                    <div class="flex gap-4 opacity-50">
-                        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" class="w-5 grayscale">
-                        <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" class="w-5 grayscale">
+        <!-- 6. TEAM MEMBERS (Compact - Guideline 44) -->
+        <section class="py-24 px-6 lg:px-12 bg-dark">
+            <h2 class="text-4xl font-['Outfit'] font-bold mb-16 text-center">The <span
+                    class="text-pink">Architects</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Compact Team Card -->
+                <div
+                    class="glass p-6 rounded-3xl text-center group border border-white/5 hover:border-pink/30 transition-all">
+                    <img src="https://i.pravatar.cc/150?u=t1"
+                        class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-white/10 group-hover:border-pink transition-all"
+                        alt="T">
+                    <h5 class="font-bold text-sm">Marcus V.</h5>
+                    <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">CEO / Founder</p>
+                </div>
+                <div
+                    class="glass p-6 rounded-3xl text-center group border border-white/5 hover:border-pink/30 transition-all">
+                    <img src="https://i.pravatar.cc/150?u=t2"
+                        class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-white/10 group-hover:border-cyan transition-all"
+                        alt="T">
+                    <h5 class="font-bold text-sm">Elena R.</h5>
+                    <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">CTO</p>
+                </div>
+                <div
+                    class="glass p-6 rounded-3xl text-center group border border-white/5 hover:border-pink/30 transition-all">
+                    <img src="https://i.pravatar.cc/150?u=t3"
+                        class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-white/10 group-hover:border-primary transition-all"
+                        alt="T">
+                    <h5 class="font-bold text-sm">Dario S.</h5>
+                    <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">Lead Artist</p>
+                </div>
+                <div
+                    class="glass p-6 rounded-3xl text-center group border border-white/5 hover:border-pink/30 transition-all">
+                    <img src="https://i.pravatar.cc/150?u=t4"
+                        class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-white/10 group-hover:border-white transition-all"
+                        alt="T">
+                    <h5 class="font-bold text-sm">Sophie L.</h5>
+                    <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">Community</p>
+                </div>
+                <div
+                    class="glass p-6 rounded-3xl text-center group border border-white/5 hover:border-pink/30 transition-all">
+                    <img src="https://i.pravatar.cc/150?u=t5"
+                        class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-white/10 group-hover:border-pink transition-all"
+                        alt="T">
+                    <h5 class="font-bold text-sm">Ken J.</h5>
+                    <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">DevOps</p>
+                </div>
+                <div
+                    class="glass p-6 rounded-3xl text-center group border border-white/5 hover:border-pink/30 transition-all">
+                    <img src="https://i.pravatar.cc/150?u=t6"
+                        class="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-white/10 group-hover:border-cyan transition-all"
+                        alt="T">
+                    <h5 class="font-bold text-sm">Yara H.</h5>
+                    <p class="text-[10px] text-white/40 font-bold uppercase tracking-widest">Compliance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. COMMUNITY & PARTNERS -->
+        <section class="py-24 px-6 lg:px-12 bg-dark/50 overflow-hidden text-center">
+            <h2 class="text-4xl font-['Outfit'] font-bold mb-16 px-4">Our <span class="text-cyan">Ecosystem</span></h2>
+            <div
+                class="flex flex-wrap justify-center gap-16 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/etherium.png" class="w-16 h-16" alt="Icon">
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/bitcoin.png" class="w-16 h-16" alt="Icon">
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/blockchain.png" class="w-16 h-16" alt="Icon">
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/smart-contract.png" class="w-16 h-16" alt="Icon">
+            </div>
+        </section>
+
+        <!-- 8. SECURITY & TRUST -->
+        <section class="py-24 px-6 lg:px-24">
+            <div
+                class="glass-card bg-gradient-to-br from-dark to-primary/20 p-16 rounded-[60px] flex flex-col xl:flex-row gap-16 items-center">
+                <div class="xl:w-1/3">
+                    <div
+                        class="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-8 border border-primary/30">
+                        <i data-lucide="shield-check" class="w-16 h-16 text-primary"></i>
                     </div>
                 </div>
+                <div class="xl:w-2/3">
+                    <h2 class="text-4xl font-bold mb-6">Uncompromising <span class="text-primary">Security</span></h2>
+                    <p class="text-xl text-white/50 leading-relaxed mb-8">All smart contracts are double-audited by
+                        leading Web3 security firms. Your assets are secured by the most robust encryption protocols in
+                        the industry.</p>
+                    <button class="btn-premium btn-primary px-12">Security Audit Report</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark/80 pt-24 pb-12 px-6 lg:px-24 border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            <!-- Brand Info -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                <a href="index.html" class="flex items-center gap-2 mb-8 group">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-['Outfit'] font-extrabold tracking-tight">ART<span
+                            class="text-primary">NFT</span></span>
+                </a>
+                <p class="text-white/50 leading-relaxed mb-10 text-lg">
+                    The world's most innovative NFT marketplace for professional digital artists and high-tier
+                    collectors. Experience Web3 art like never before.
+                </p>
+                <!-- Socials -->
+                <div class="flex gap-5">
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-cyan hover:border-cyan hover:-translate-y-2 transition-all"><i
+                            data-lucide="twitter"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-primary hover:border-primary hover:-translate-y-2 transition-all"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-pink hover:border-pink hover:-translate-y-2 transition-all"><i
+                            data-lucide="github"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-white hover:border-white hover:-translate-y-2 transition-all"><i
+                            data-lucide="discord"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Marketplace</h4>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">All NFTs</a>
+                <a href="collections.html" class="text-white/50 hover:text-cyan transition-all w-fit">Collections</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Photography</a>
+                <a href="auctions.html" class="text-white/50 hover:text-cyan transition-all w-fit">Live Auctions</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Virtual Reality</a>
+            </div>
+
+            <!-- Platform Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Platform</h4>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">About Us</a>
+                <a href="blog.html" class="text-white/50 hover:text-primary transition-all w-fit">Latest News</a>
+                <a href="contact.html" class="text-white/50 hover:text-primary transition-all w-fit">Support Center</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Platform Story</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Roadmap</a>
+            </div>
+
+            <!-- More Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Community</h4>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Artists Hub</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Partner Programs</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Affiliates</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Developer API</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Careers</a>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div
+            class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 text-white/30 font-medium">
+            <p>© 2026 Digital Art NFT Platform. All rights reserved.</p>
+            <div class="flex gap-10 mt-6 md:mt-0">
+                <a href="#" class="hover:text-white transition-all">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-all">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-all">Cookies</a>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/wallet.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+        const menuBtn = document.getElementById('menu-toggle');
+        const closeBtn = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn?.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeBtn?.addEventListener('click', () => mobileMenu.classList.remove('active'));
+    </script>
 </body>
 
 </html>

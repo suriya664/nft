@@ -1,238 +1,364 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | NFTNexus</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <title>Contact Support | Digital Art NFT Platform</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/nolan/64/nft.png">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#8B5CF6',
-                        secondary: '#06B6D4',
-                        accent: '#EC4899',
-                        dark: { bg: '#0F172A', card: '#1E293B', sidebar: '#0B1120' }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
+                    colors: { primary: '#8B5CF6', cyan: '#06B6D4', pink: '#EC4899', dark: '#0B0E14' }
                 }
             }
         }
     </script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/dark-mode.css">
-    <link rel="stylesheet" href="assets/css/web3.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/theme.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-slate-50 text-slate-900 dark:bg-[#0F172A] dark:text-slate-100 min-h-screen flex flex-col">
- <!-- Navbar -->
-    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent" id="navbar">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer"
-                    onclick="window.location.href='index.html'">
-                    <div
-                        class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl font-bold animate-pulse-glow">
-                        <i class="fa-solid fa-cube"></i>
-                    </div>
-                    <span class="font-display text-2xl font-bold tracking-tight">NFT<span
-                            class="text-primary">Nexus</span></span>
-                </div>
+<body class="bg-dark text-white font-['Inter']">
 
-                <!-- Desktop Nav -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-sm font-medium hover:text-primary transition-colors">Home</a>
-                    <a href="index-v2.html" class="text-sm font-medium hover:text-primary transition-colors">Home v2</a>
-                    <a href="marketplace.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Explore</a>
-                    <a href="collections.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Collections</a>
-                    <a href="create-nft.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Create</a>
-                    <a href="about.html" class="text-sm font-medium hover:text-primary transition-colors">About</a>
-                    <a href="login.html" class="text-sm font-medium hover:text-primary transition-colors">Login</a>
-                    <a href="register.html"
-                        class="text-sm font-medium hover:text-primary transition-colors">Register</a>
-                </nav>
-
-                <!-- Right Actions -->
-                <div class="hidden md:flex items-center gap-4">
-
-                    <!-- Connect Wallet Btn -->
-                    <button
-                        class="btn-connect-wallet bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-primary/25">
-                        Connect Wallet
-                    </button>
-
-                    <!-- User Menu (Hidden by default) -->
-                    <div class="user-wallet-menu hidden relative group">
-                        <div class="flex items-center gap-2 cursor-pointer">
-                            <div class="w-9 h-9 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 p-[2px]">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User"
-                                    class="w-full h-full rounded-full bg-slate-900 object-cover">
-                            </div>
-                        </div>
-                        <!-- Dropdown -->
-                        <div
-                            class="absolute right-0 top-full mt-2 w-48 bg-[#1E293B] border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform origin-top-right z-50">
-                            <div class="p-3 border-b border-white/10">
-                                <p class="text-xs text-secondary font-mono wallet-address">0x...</p>
-                            </div>
-                            <a href="dashboard-collector.html"
-                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">Dashboard</a>
-                            <a href="profile.html"
-                                class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary">My Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm hover:bg-white/5 hover:text-primary"
-                                id="btn-disconnect">Disconnect</a>
-                        </div>
-                    </div>
-
-                    <!-- Theme Toggle -->
-                    <button
-                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/5">
-                        <i class="fa-solid fa-moon dark:hidden text-slate-700"></i>
-                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
-                    </button>
-
-                    <!-- Language -->
-                    <div class="text-sm font-medium cursor-pointer hover:text-primary">EN</div>
-                </div>
-
-                <!-- Mobile Menu Details -->
-                <div class="md:hidden flex items-center gap-4">
-                    <button
-                        class="theme-toggle w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center">
-                        <i class="fa-solid fa-moon dark:hidden text-slate-700"></i>
-                        <i class="fa-solid fa-sun hidden dark:block text-yellow-400"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="text-2xl">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
+    <!-- NAVIGATION -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10 px-6 lg:px-12 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div
+                class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <i data-lucide="zap" class="text-white w-6 h-6"></i>
             </div>
-        </div>
-    </header>
+            <span
+                class="text-2xl font-['Outfit'] font-extrabold tracking-tight group-hover:text-cyan transition-colors">ART<span
+                    class="text-primary">NFT</span></span>
+        </a>
 
-    <!-- Mobile Menu Overlay -->
+        <div class="hidden lg:flex items-center gap-8 ml-8">
+            <a href="index.html" class="text-white/70 hover:text-white transition-all">Home</a>
+            <a href="explore.html" class="text-white/70 hover:text-white transition-all">Explore</a>
+            <a href="artists.html" class="text-white/70 hover:text-white transition-all">Artists</a>
+            <a href="collections.html" class="text-white/70 hover:text-white transition-all">Collections</a>
+            <a href="auctions.html" class="text-white/70 hover:text-white transition-all">Drops</a>
+            <a href="about.html" class="text-white/70 hover:text-white transition-all">About</a>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-6">
+            <button
+                class="theme-toggle w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-all transform hover:rotate-12">
+                <i data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+            <a href="login.html" class="text-white font-medium hover:text-primary transition-colors">Login</a>
+            <a href="dashboard.html" class="btn-premium btn-primary text-sm">Connect Wallet</a>
+        </div>
+
+        <button id="menu-toggle" class="lg:hidden text-white p-2">
+            <i data-lucide="menu" class="w-8 h-8"></i>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU (Left Slide) -->
     <div id="mobile-menu"
-        class="fixed inset-0 z-[60] bg-[#0F172A] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col">
-        <div class="p-6 flex justify-between items-center border-b border-white/10">
-            <span class="font-display text-xl font-bold">Menu</span>
-            <button id="close-mobile-menu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+        class="fixed inset-0 z-[60] bg-dark/95 backdrop-blur-xl lg:hidden flex flex-col p-8 w-[80%] max-w-[320px] h-screen border-r border-white/10">
+        <div class="flex items-center justify-between mb-12">
+            <span class="text-2xl font-['Outfit'] font-bold">ART<span class="text-primary">NFT</span></span>
+            <button id="menu-close" class="text-white"><i data-lucide="x" class="w-8 h-8"></i></button>
         </div>
-        <div class="flex-1 flex flex-col p-6 space-y-6 overflow-y-auto">
-            <a href="index.html" class="text-lg font-medium">Home</a>
-            <a href="index-v2.html" class="text-lg font-medium">Home v2</a>
-            <a href="marketplace.html" class="text-lg font-medium">Explore</a>
-            <a href="collections.html" class="text-lg font-medium">Collections</a>
-            <a href="create-nft.html" class="text-lg font-medium">Create</a>
-            <a href="about.html" class="text-lg font-medium">About</a>
-            <a href="contact.html" class="text-lg font-medium">Contact</a>
-            <a href="blog.html" class="text-lg font-medium">Blog</a>
-            <a href="login.html" class="text-lg font-medium">Login</a>
-            <a href="register.html" class="text-lg font-medium">Register</a>
-            <div class="h-px bg-white/10 my-2"></div>
-            <button class="btn-connect-wallet w-full bg-primary py-3 rounded-lg font-bold">Connect Wallet</button>
+        <div class="flex flex-col gap-6 text-xl">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="artists.html">Artists</a>
+            <a href="collections.html">Collections</a>
+            <a href="auctions.html">Drops</a>
+            <hr class="border-white/10 my-4">
+            <a href="login.html" class="btn-premium btn-outline text-lg">Login</a>
+            <a href="dashboard.html" class="btn-premium btn-primary text-lg">Connect Wallet</a>
         </div>
     </div>
 
-    <div class="pt-28 pb-20 container mx-auto px-4 flex-1">
+    <!-- MAIN CONTENT -->
+    <main class="mt-[80px]">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+        <!-- 1. CONTACT HERO (Centralized - Guideline 31) -->
+        <section class="relative py-28 px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-6xl md:text-8xl font-['Outfit'] font-extrabold mb-8">Connect with <br> <span
+                        class="text-gradient">Our Universe</span></h1>
+                <p class="text-xl text-white/50 max-w-2xl mx-auto">Have a question? Need support with your collection?
+                    Or just want to say hi? Our team is always here to help you navigate the digital frontier.</p>
+            </div>
+        </section>
 
-            <!-- Contact Info -->
-            <div>
-                <h1 class="text-4xl md:text-5xl font-display font-bold mb-6">Get in Touch</h1>
-                <p class="text-slate-400 mb-10 text-lg">Have a question about NFTS, mining, or our marketplace? We're
-                    here to help you 24/7.</p>
+        <!-- 2. INFORMATION CARDS -->
+        <section class="py-16 px-6 lg:px-12 bg-dark/50 border-y border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="glass-card p-10 rounded-[40px] text-center border border-white/5 hover:border-primary/50 transition-all">
+                    <div class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-8"><i
+                            data-lucide="mail" class="text-primary"></i></div>
+                    <h4 class="text-xl font-bold mb-2">Email Us</h4>
+                    <p class="text-sm text-white/40">support@artnft.com</p>
+                </div>
+                <div
+                    class="glass-card p-10 rounded-[40px] text-center border border-white/5 hover:border-cyan/50 transition-all">
+                    <div class="w-16 h-16 bg-cyan/20 rounded-2xl flex items-center justify-center mx-auto mb-8"><i
+                            data-lucide="message-square" class="text-cyan"></i></div>
+                    <h4 class="text-xl font-bold mb-2">Discord</h4>
+                    <p class="text-sm text-white/40">discord.gg/artnft</p>
+                </div>
+                <div
+                    class="glass-card p-10 rounded-[40px] text-center border border-white/5 hover:border-pink/50 transition-all">
+                    <div class="w-16 h-16 bg-pink/20 rounded-2xl flex items-center justify-center mx-auto mb-8"><i
+                            data-lucide="twitter" class="text-pink"></i></div>
+                    <h4 class="text-xl font-bold mb-2">Twitter</h4>
+                    <p class="text-sm text-white/40">@artnft_platform</p>
+                </div>
+                <div
+                    class="glass-card p-10 rounded-[40px] text-center border border-white/5 hover:border-white/50 transition-all">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-8"><i
+                            data-lucide="map-pin" class="text-white/50"></i></div>
+                    <h4 class="text-xl font-bold mb-2">Office</h4>
+                    <p class="text-sm text-white/40">Virtual HQ, Metaverse</p>
+                </div>
+            </div>
+        </section>
 
-                <div class="space-y-8">
-                    <div class="flex items-start gap-4">
-                        <div
-                            class="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary text-xl">
-                            <i class="fa-solid fa-envelope"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg mb-1">Email Us</h3>
-                            <p class="text-slate-400 mb-1">Our friendly team is here to help.</p>
-                            <a href="mailto:support@nftnexus.com"
-                                class="text-primary hover:underline">support@nftnexus.com</a>
+        <!-- 3. CONTACT FORM SECTION -->
+        <section class="py-32 px-6 lg:px-24">
+            <div class="flex flex-col xl:flex-row gap-20">
+                <div class="xl:w-1/2">
+                    <h2 class="text-5xl font-['Outfit'] font-extrabold mb-10 leading-tight">Send a <span
+                            class="text-gradient">Message</span></h2>
+                    <p class="text-xl text-white/50 mb-12">Whether you're an artist looking to collaborate or a
+                        collector needing help, our specialized support agents will get back to you within 24 hours.</p>
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-6">
+                            <i data-lucide="check-circle" class="text-cyan w-8 h-8"></i>
+                            <span class="text-lg font-medium">98.5% Client Satisfaction</span>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div
-                            class="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary text-xl">
-                            <i class="fa-brands fa-discord"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg mb-1">Join Discord</h3>
-                            <p class="text-slate-400 mb-1">Chat with us and the community.</p>
-                            <a href="#" class="text-primary hover:underline">discord.gg/nftnexus</a>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div
-                            class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center text-accent text-xl">
-                            <i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <h3 class="font-bold text-lg mb-1">Main Office</h3>
-                            <p class="text-slate-400">123 Blockchain Blvd, Crypto Valley,<br>Metaverse, MT 54321</p>
+                        <div class="flex items-center gap-6">
+                            <i data-lucide="check-circle" class="text-primary w-8 h-8"></i>
+                            <span class="text-lg font-medium">Global 24/7 Availability</span>
                         </div>
                     </div>
                 </div>
+                <div class="xl:w-1/2">
+                    <div class="glass-card p-10 lg:p-16 rounded-[48px] border border-white/5 relative overflow-hidden">
+                        <form class="space-y-8 relative z-10">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">Your
+                                        Name</label>
+                                    <input type="text" placeholder="John Doe"
+                                        class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-primary transition-all">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">Your
+                                        Email</label>
+                                    <input type="email" placeholder="john@example.com"
+                                        class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan transition-all">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">Subject</label>
+                                <select
+                                    class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink appearance-none">
+                                    <option class="bg-dark">Account Support</option>
+                                    <option class="bg-dark">Artist Application</option>
+                                    <option class="bg-dark">Collection Drops</option>
+                                    <option class="bg-dark">Other Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">Message</label>
+                                <textarea rows="4" placeholder="How can we help you?"
+                                    class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-primary transition-all"></textarea>
+                            </div>
+                            <button
+                                class="w-full btn-premium btn-primary py-5 text-lg shadow-[0_0_30px_rgba(139,92,246,0.3)]">Send
+                                Transmission</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. TRUST BUILDER (Slider) -->
+        <section class="py-24 px-6 lg:px-12 bg-dark/30">
+            <h3 class="text-3xl font-bold mb-16 text-center font-['Outfit']">Used by <span class="text-cyan">Global
+                    Innovators</span></h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 opacity-40">
+                <div class="flex items-center justify-center font-black text-4xl tracking-tighter">NEXUS</div>
+                <div class="flex items-center justify-center font-black text-4xl tracking-tighter text-primary">VOID
+                </div>
+                <div class="flex items-center justify-center font-black text-4xl tracking-tighter text-cyan">PRISM</div>
+                <div class="flex items-center justify-center font-black text-4xl tracking-tighter">ZENITH</div>
+                <div class="flex items-center justify-center font-black text-4xl tracking-tighter text-pink">AETHER
+                </div>
+                <div class="flex items-center justify-center font-black text-4xl tracking-tighter">KRYPTO</div>
+            </div>
+        </section>
+
+        <!-- 5. FAQ SECTION -->
+        <section class="py-32 px-6 lg:px-24">
+            <h2 class="text-5xl font-['Outfit'] font-extrabold mb-20 text-center">Common <span
+                    class="text-gradient">Questions</span></h2>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div
+                    class="glass-card rounded-3xl p-8 border border-white/5 hover:border-white/20 transition-all cursor-pointer group">
+                    <div class="flex justify-between items-center bg-transparent">
+                        <h4 class="text-xl font-bold">How do I verify my artist profile?</h4>
+                        <i data-lucide="plus"
+                            class="text-white/40 group-hover:text-cyan group-hover:rotate-45 transition-all"></i>
+                    </div>
+                    <div class="mt-6 text-white/40 leading-relaxed hidden group-hover:block transition-all">
+                        You need to possess a minimum portfolio of 10 high-quality pieces and undergo our identity
+                        verification process. Once submitted, our curators will review your application within 48 hours.
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-3xl p-8 border border-white/5 hover:border-white/20 transition-all cursor-pointer group">
+                    <div class="flex justify-between items-center bg-transparent">
+                        <h4 class="text-xl font-bold">What are the platform gas fees?</h4>
+                        <i data-lucide="plus"
+                            class="text-white/40 group-hover:text-cyan group-hover:rotate-45 transition-all"></i>
+                    </div>
+                    <div class="mt-6 text-white/40 leading-relaxed hidden group-hover:block">
+                        We utilize Layer 2 scaling solutions to keep gas fees at a minimum. Standard minting fees are
+                        approximately 0.002 ETH.
+                    </div>
+                </div>
+                <div
+                    class="glass-card rounded-3xl p-8 border border-white/5 hover:border-white/20 transition-all cursor-pointer group">
+                    <div class="flex justify-between items-center bg-transparent">
+                        <h4 class="text-xl font-bold">Is my crypto wallet secure?</h4>
+                        <i data-lucide="plus"
+                            class="text-white/40 group-hover:text-cyan group-hover:rotate-45 transition-all"></i>
+                    </div>
+                    <div class="mt-6 text-white/40 leading-relaxed hidden group-hover:block">
+                        We never store your private keys. All transactions are handled through your browser wallet
+                        (MetaMask/WalletConnect) for peak security.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. JOIN COMMUNITY CTA -->
+        <section class="py-24 px-6 lg:px-24">
+            <div
+                class="glass-card bg-primary/20 p-24 rounded-[80px] text-center border-2 border-dashed border-primary/40">
+                <h2 class="text-6xl font-['Outfit'] font-extrabold mb-10 leading-tight">Join the <span
+                        class="text-gradient">Digital Elite</span></h2>
+                <div class="flex flex-wrap justify-center gap-10">
+                    <div class="flex flex-col items-center">
+                        <p class="text-5xl font-black mb-2">120K+</p>
+                        <p class="text-xs text-white/40 uppercase tracking-widest font-bold">Collectors</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <p class="text-5xl font-black mb-2">5K+</p>
+                        <p class="text-xs text-white/40 uppercase tracking-widest font-bold">Verified Artists</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <p class="text-5xl font-black mb-2">$8.4M</p>
+                        <p class="text-xs text-white/40 uppercase tracking-widest font-bold">Trade Volume</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark/80 pt-24 pb-12 px-6 lg:px-24 border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            <!-- Brand Info -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                <a href="index.html" class="flex items-center gap-2 mb-8 group">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-['Outfit'] font-extrabold tracking-tight">ART<span
+                            class="text-primary">NFT</span></span>
+                </a>
+                <p class="text-white/50 leading-relaxed mb-10 text-lg">
+                    The world's most innovative NFT marketplace for professional digital artists and high-tier
+                    collectors. Experience Web3 art like never before.
+                </p>
+                <!-- Socials -->
+                <div class="flex gap-5">
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-cyan hover:border-cyan hover:-translate-y-2 transition-all"><i
+                            data-lucide="twitter"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-primary hover:border-primary hover:-translate-y-2 transition-all"><i
+                            data-lucide="instagram"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-pink hover:border-pink hover:-translate-y-2 transition-all"><i
+                            data-lucide="github"></i></a>
+                    <a href="#"
+                        class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-white/50 hover:text-white hover:border-white hover:-translate-y-2 transition-all"><i
+                            data-lucide="discord"></i></a>
+                </div>
             </div>
 
-            <!-- Form -->
-            <div class="bg-dark-card border border-white/10 rounded-3xl p-8 shadow-2xl">
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold mb-3">First Name</label>
-                            <input type="text" placeholder="John"
-                                class="w-full bg-dark-bg border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-3">Last Name</label>
-                            <input type="text" placeholder="Doe"
-                                class="w-full bg-dark-bg border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold mb-3">Email</label>
-                        <input type="email" placeholder="name@example.com"
-                            class="w-full bg-dark-bg border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold mb-3">Message</label>
-                        <textarea rows="5" placeholder="How can we help you?"
-                            class="w-full bg-dark-bg border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"></textarea>
-                    </div>
-
-                    <button type="button"
-                        class="w-full py-4 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 text-white rounded-xl font-bold text-lg shadow-lg shadow-primary/25 transition-all transform hover:-translate-y-1">
-                        Send Message
-                    </button>
-                </form>
+            <!-- Quick Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Marketplace</h4>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">All NFTs</a>
+                <a href="collections.html" class="text-white/50 hover:text-cyan transition-all w-fit">Collections</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Photography</a>
+                <a href="auctions.html" class="text-white/50 hover:text-cyan transition-all w-fit">Live Auctions</a>
+                <a href="explore.html" class="text-white/50 hover:text-cyan transition-all w-fit">Virtual Reality</a>
             </div>
 
+            <!-- Platform Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Platform</h4>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">About Us</a>
+                <a href="blog.html" class="text-white/50 hover:text-primary transition-all w-fit">Latest News</a>
+                <a href="contact.html" class="text-white/50 hover:text-primary transition-all w-fit">Support Center</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Platform Story</a>
+                <a href="about.html" class="text-white/50 hover:text-primary transition-all w-fit">Roadmap</a>
+            </div>
+
+            <!-- More Links -->
+            <div class="flex flex-col gap-6">
+                <h4 class="text-2xl font-bold mb-4 font-['Outfit']">Community</h4>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Artists Hub</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Partner Programs</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Affiliates</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Developer API</a>
+                <a href="#" class="text-white/50 hover:text-pink transition-all w-fit">Careers</a>
+            </div>
         </div>
-    </div>
 
-    <script src="assets/js/wallet.js"></script>
-    <script src="assets/js/main.js"></script>
+        <!-- Bottom Footer -->
+        <div
+            class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 text-white/30 font-medium">
+            <p>© 2026 Digital Art NFT Platform. All rights reserved.</p>
+            <div class="flex gap-10 mt-6 md:mt-0">
+                <a href="#" class="hover:text-white transition-all">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-all">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-all">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const menuBtn = document.getElementById('menu-toggle');
+        const closeBtn = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn?.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeBtn?.addEventListener('click', () => mobileMenu.classList.remove('active'));
+    </script>
 </body>
 
 </html>

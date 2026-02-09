@@ -1,127 +1,167 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="h-full">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | NFTNexus</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <title>Join the Collective | Digital Art NFT Platform</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/nolan/64/nft.png">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#8B5CF6',
-                        secondary: '#06B6D4',
-                        accent: '#EC4899',
-                        dark: { bg: '#0F172A', card: '#1E293B', sidebar: '#0B1120' }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
+                    colors: { primary: '#8B5CF6', cyan: '#06B6D4', pink: '#EC4899', dark: '#0B0E14' }
                 }
             }
         }
     </script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/dark-mode.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/theme.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-slate-50 text-slate-900 dark:bg-[#0F172A] dark:text-slate-100 min-h-screen flex items-center justify-center px-4">
+<body class="bg-dark text-white font-['Inter'] h-full flex items-center justify-center p-0 m-0 overflow-x-hidden">
 
-    <div class="w-full max-w-md bg-dark-card border border-white/10 rounded-3xl p-6 shadow-2xl login-register-card">
+    <div class="flex w-full min-h-full lg:h-screen">
+        <!-- Visual Side (Guideline 22) -->
+        <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden h-screen">
+            <!-- Main Visual -->
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop"
+                class="absolute inset-0 w-full h-full object-cover scale-110" alt="Auth Visual">
 
-        <div class="text-center mb-6">
-            <a href="index.html" class="logo-link inline-flex items-center gap-2 mb-4">
-                <div
-                    class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl font-bold">
-                    <i class="fa-solid fa-cube"></i>
+            <!-- Ambient Effects -->
+            <div class="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/20 to-transparent z-10"></div>
+            <div
+                class="absolute top-[20%] left-[10%] w-[300px] h-[300px] bg-pink/10 rounded-full blur-[120px] animate-pulse">
+            </div>
+            <div class="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-primary/10 rounded-full blur-[150px] animate-pulse"
+                style="animation-delay: 2s;"></div>
+
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-12 z-20">
+                <a href="index.html" class="flex items-center gap-3 mb-12 group transition-transform hover:scale-105">
+                    <div
+                        class="w-14 h-14 bg-gradient-to-br from-pink to-primary rounded-2xl flex items-center justify-center shadow-2xl">
+                        <i data-lucide="zap" class="text-white w-8 h-8"></i>
+                    </div>
+                    <span class="text-4xl font-['Outfit'] font-extrabold tracking-tight">ART<span
+                            class="text-primary">NFT</span></span>
+                </a>
+                <div class="space-y-6">
+                    <h2 class="text-6xl font-['Outfit'] font-extrabold mb-4 max-w-lg leading-[1.1] mx-auto">Start Your
+                        <br>
+                        <span class="text-gradient">Creative Legacy</span>
+                    </h2>
+                    <p class="text-xl text-white/50 max-w-sm mx-auto leading-relaxed">Join over 120,000 collectors and
+                        artists in the
+                        world's most innovative NFT ecosystem.</p>
                 </div>
-                <span class="font-display text-2xl font-bold tracking-tight">NFT<span
-                        class="text-primary">Nexus</span></span>
-            </a>
-            <h1 class="text-3xl font-display font-bold mb-2">Create Account</h1>
-            <p class="text-slate-400">Join the NFT revolution and start collecting.</p>
+            </div>
         </div>
 
-        <!-- Registration Form -->
-        <form class="space-y-3 mb-4">
-            <div>
-                <label class="block text-sm font-medium mb-2">Username</label>
-                <input type="text" placeholder="Choose a username"
-                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary transition-colors">
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium mb-2">Email</label>
-                <input type="email" placeholder="Enter your email"
-                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary transition-colors">
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium mb-2">Password</label>
-                <input type="password" placeholder="Create a strong password"
-                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary transition-colors">
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium mb-2">Confirm Password</label>
-                <input type="password" placeholder="Confirm your password"
-                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary transition-colors">
-            </div>
-            
-            <div class="flex items-center gap-2">
-                <input type="checkbox" id="terms" class="w-4 h-4 rounded border-white/10 bg-white/5 text-primary focus:ring-primary">
-                <label for="terms" class="text-sm text-slate-400">
-                    I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a>
-                </label>
-            </div>
-        </form>
-
-        <!-- Wallet Registration -->
-        <div class="space-y-3 mb-4">
-            <div class="relative flex py-2 items-center">
-                <div class="flex-grow border-t border-white/10"></div>
-                <span class="flex-shrink mx-4 text-slate-500 text-sm">Or register with wallet</span>
-                <div class="flex-grow border-t border-white/10"></div>
+        <!-- Form Side -->
+        <div
+            class="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-14 relative overflow-hidden h-auto lg:h-full">
+            <div
+                class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan/10 rounded-full blur-[100px] -ml-40 -mb-20">
             </div>
 
-            <button
-                class="w-full py-3 px-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-xl font-bold flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1 shadow-lg"
-                onclick="window.location.href='dashboard-collector.html'">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" class="w-6 h-6">
-                Connect MetaMask
-            </button>
-            <button
-                class="w-full py-3 px-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl font-bold flex items-center justify-center gap-3 transition-all"
-                onclick="window.location.href='dashboard-collector.html'">
-                <img src="https://avatars.githubusercontent.com/u/37784886?s=280&v=4" class="w-6 h-6 rounded-full">
-                WalletConnect
-            </button>
+            <div
+                class="w-full max-w-[520px] relative z-10 glass-card p-10 lg:p-12 rounded-[48px] border border-white/10 overflow-y-auto max-h-[90vh] no-scrollbar">
+
+                <!-- Mobile Logo (Guideline 16) -->
+                <div class="lg:hidden flex justify-center mb-8">
+                    <a href="index.html" class="flex items-center gap-2 group">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-cyan to-primary rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                            <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                        </div>
+                        <span
+                            class="text-2xl font-['Outfit'] font-extrabold tracking-tight group-hover:text-cyan transition-colors">ART<span
+                                class="text-primary">NFT</span></span>
+                    </a>
+                </div>
+
+                <!-- Back to Home (Guideline 29) -->
+                <a href="index.html"
+                    class="inline-flex items-center gap-2 text-white/40 hover:text-cyan transition-colors mb-8 group font-bold text-xs uppercase tracking-widest">
+                    <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
+                    Back to Home
+                </a>
+
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl font-['Outfit'] font-extrabold mb-2">Create Account</h1>
+                    <p class="text-white/40 font-medium">Join the next generation of digital value</p>
+                </div>
+
+                <!-- Branded Social Logins -->
+                <div class="grid grid-cols-2 gap-4 mb-10">
+                    <button
+                        class="flex items-center justify-center gap-3 bg-white/5 border border-white/10 py-4 rounded-2xl hover:bg-white/10 transition-all font-bold group">
+                        <img src="https://img.icons8.com/color/24/google-logo.png" alt="G">
+                        <span class="text-xs tracking-widest uppercase">Google</span>
+                    </button>
+                    <button
+                        class="flex items-center justify-center gap-3 bg-white/5 border border-white/10 py-4 rounded-2xl hover:bg-white/10 transition-all font-bold">
+                        <img src="https://img.icons8.com/color/24/metamask-logo.png" alt="M">
+                        <span class="text-xs tracking-widest uppercase">Wallet</span>
+                    </button>
+                </div>
+
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">First
+                                Name</label>
+                            <input type="text" placeholder="John"
+                                class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">Last
+                                Name</label>
+                            <input type="text" placeholder="Doe"
+                                class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-pink transition-all">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">Email
+                            Address</label>
+                        <input type="email" placeholder="john@example.com"
+                            class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase tracking-widest text-white/40 px-2">Create
+                            Password</label>
+                        <input type="password" placeholder="••••••••"
+                            class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan transition-all">
+                    </div>
+
+                    <div class="flex items-start gap-3 px-2 pt-2">
+                        <input type="checkbox" id="terms"
+                            class="mt-1 w-5 h-5 rounded-md bg-white/5 border border-white/10 checked:bg-primary transition-all cursor-pointer">
+                        <label for="terms" class="text-xs text-white/40 leading-relaxed font-medium cursor-pointer">I
+                            agree to the <a href="#" class="text-cyan font-bold">Terms of Service</a> and <a href="#"
+                                class="text-cyan font-bold">Privacy Policy</a>.</label>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full btn-premium btn-primary py-5 text-lg font-bold shadow-[0_15px_30px_-10px_rgba(236,72,153,0.3)]">Create
+                        Account</button>
+                </form>
+
+                <p class="text-center mt-10 text-white/40 text-sm">
+                    Already have an account? <a href="login.html"
+                        class="text-pink font-bold hover:underline transition-colors">Sign in here</a>
+                </p>
+            </div>
         </div>
-
-        <div class="text-center">
-            <p class="text-slate-400 text-sm">Already have an account? <a href="login.html"
-                    class="text-primary hover:text-white font-medium transition-colors">Sign In</a></p>
-        </div>
-
-        <!-- Simple Copyright -->
-        <div class="text-center mt-6 pt-4 border-t border-white/5">
-            <p class="text-slate-500 text-xs"> 2026 NFTNexus. All rights reserved.</p>
-        </div>
-
     </div>
 
-    <script src="assets/js/wallet.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>
